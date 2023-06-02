@@ -65,7 +65,6 @@ public class PelangganDAO {
             System.out.println(e);
         }
         dbCon.closeConnection();
-
         return list;
     }
 
