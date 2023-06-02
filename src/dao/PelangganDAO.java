@@ -61,11 +61,78 @@ public class PelangganDAO {
                 }
             }
         } catch (Exception e) {
-            System.out.println("Error Reading database...");
+            System.out.println("[!] Error Reading Pelanggan...");
             System.out.println(e);
         }
         dbCon.closeConnection();
         return list;
+    }
+
+    public Pelanggan searchPelanggan(String nama) {
+        con = dbCon.makeConnection();
+
+        String sql = "SELECT * FROM pelanggan WHERE nama = '" + nama + "'";
+        System.out.println("Searching Pelanggan...");
+        Pelanggan p = null;
+
+        try {
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+
+            if (rs != null) {
+                while (rs.next()) {
+                    p = new Pelanggan(
+                            rs.getInt("id"),
+                            rs.getString("nama"),
+                            rs.getString("noTelp"),
+                            rs.getString("alamat")
+                    );
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("[!] Error Search Pelanggan...");
+            System.out.println(e);
+        }
+        dbCon.closeConnection();
+
+        return p;
+    }
+
+    public void updatePelanggan(Pelanggan p, int id) {
+        con = dbCon.makeConnection();
+
+        String sql = "UPDATE pelanggan SET nama = '" + p.getNama() + "', "
+                + "noTelp = '" + p.getNoTelp() + "', alamat = '" + p.getAlamat() + "' "
+                + "WHERE id = '" + id + "'";
+        System.out.println("Update data pelanggan");
+
+        try {
+            Statement statement = con.createStatement();
+            int result = statement.executeUpdate(sql);
+            System.out.println("Edited " + result + " Pelanggan" + id);
+            statement.close();
+        } catch (Exception e) {
+            System.out.println("[!] Error update Pelanggan...");
+            System.out.println(e);
+        }
+    }
+
+    public void deletePelanggan(int id) {
+        con = dbCon.makeConnection();
+
+        String sql = "DELETE FROM pelanggan WHERE id = '" + id + "'";
+        System.out.println("Deleting Pelanggan...");
+
+        try {
+            Statement statement = con.createStatement();
+            int result = statement.executeUpdate(sql);
+            System.out.println("Delete " + result + " Pelanggan " + id);
+            statement.close();
+        } catch (Exception e) {
+            System.out.println("[!] Error deleting Pelanggan...");
+            System.out.println(e);
+        }
+        dbCon.closeConnection();
     }
 
 }
