@@ -23,4 +23,23 @@ public class PelangganControl {
         }
         return pelangganString;
     }
+    
+    public Pelanggan searchPelanggan(String nama){
+        Pelanggan p = null;
+        p = pDao.searchPelanggan(nama);
+        return p;
+    }
+    
+    public void updatePelanggan(Pelanggan p, int id){
+        pDao.updatePelanggan(p, id);
+    }
+    
+    public void deletePelanggan(int id){
+        pDao.deletePelanggan(id);
+    }
+    
+    public List<Pelanggan> listPelanggan(){
+        List<Pelanggan> dataPelanggan = pDao.showPelanggan();
+        return dataPelanggan;
+    }
 }
