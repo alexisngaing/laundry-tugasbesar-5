@@ -71,7 +71,7 @@ public class PelangganDAO {
     public Pelanggan searchPelanggan(String nama) {
         con = dbCon.makeConnection();
 
-        String sql = "SELECT * FROM pelanggan WHERE nama = '" + nama + "'";
+        String sql = "SELECT * FROM pelanggan WHERE nama LIKE '%" + nama + "%'";
         System.out.println("Searching Pelanggan...");
         Pelanggan p = null;
 
