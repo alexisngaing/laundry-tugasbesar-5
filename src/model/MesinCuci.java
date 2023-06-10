@@ -3,20 +3,24 @@ package model;
 import java.util.Date;
 
 public class MesinCuci extends Mesin {
-    private int idMesin;
+//    private int idMesinCuci;
     private boolean statusMesinCuci;
     private float kapasitasMesinCuci;
 
-    public MesinCuci(int id, boolean status, float kapasitas, Date durasi, int idMesin, boolean statusMesinCuci, float kapasitasMesinCuci) {
-        super(id, status, kapasitas, durasi);
-        this.idMesin = idMesin;
+    public MesinCuci(int idMesin, boolean status, float kapasitas, Date durasi, /* int idMesin,*/ boolean statusMesinCuci, float kapasitasMesinCuci) {
+        super(idMesin, status, kapasitas, durasi);
+//        this.idMesin = idMesinCuci;
         this.statusMesinCuci = statusMesinCuci;
         this.kapasitasMesinCuci = kapasitasMesinCuci;
     }
-
-    public int getIdMesin() {
-        return idMesin;
+    
+    public MesinCuci(int idMesin, boolean status, float kapasitas, Date durasi) {
+        super(idMesin, status, kapasitas, durasi);
     }
+
+//    public int getIdMesinCuci() {
+//        return idMesin;
+//    }
 
     public boolean getStatusMesinCuci() {
         return statusMesinCuci;
@@ -26,9 +30,9 @@ public class MesinCuci extends Mesin {
         return kapasitasMesinCuci;
     }
 
-    public void setIdMesin(int idMesin) {
-        this.idMesin = idMesin;
-    }
+//    public void setIdMesinCuci(int idMesinCuci) {
+//        this.idMesin = idMesin;
+//    }
 
     public void setStatusMesinCuci(boolean statusMesinCuci) {
         this.statusMesinCuci = statusMesinCuci;

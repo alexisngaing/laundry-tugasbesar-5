@@ -5,20 +5,20 @@ package model;
  * @author Vemas
  */
 public class Pelanggan {
-    private int id;
+    private int idPelanggan;
     private String nama;
     private String noTelp;
     private String alamat;
 
-    public Pelanggan(int id, String nama, String noTelp, String alamat) {
-        this.id = id;
+    public Pelanggan(int idPelanggan, String nama, String noTelp, String alamat) {
+        this.idPelanggan = idPelanggan;
         this.nama = nama;
         this.noTelp = noTelp;
         this.alamat = alamat;
     }
 
-    public int getId() {
-        return id;
+    public int getIdPelanggan() {
+        return idPelanggan;
     }
 
     public String getNama() {
@@ -33,8 +33,8 @@ public class Pelanggan {
         return alamat;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int idPelanggan) {
+        this.idPelanggan = idPelanggan;
     }
 
     public void setNama(String nama) {
@@ -51,7 +51,7 @@ public class Pelanggan {
     
     public String showDataPelanggan(){
         return
-                this.id + " | "
+                this.idPelanggan + " | "
                 + this.nama + " | "
                 + this.noTelp + " | "
                 + this.alamat;

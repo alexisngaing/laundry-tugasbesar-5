@@ -1,35 +1,35 @@
 package model;
 
 import java.util.Date;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 
 public abstract class Mesin {
-    protected int id;
-    protected boolean status;
+    protected int idMesin;
+    protected boolean statusMesin;
     protected float kapasitas;
     protected Date durasi;
-    protected ArrayList<MesinCuci> mesincuci;
-    protected ArrayList<Dryer> dryer;
+//    protected ArrayList<MesinCuci> mesincuci;
+//    protected ArrayList<Dryer> dryer;
 
-    public Mesin(int id, boolean status, float kapasitas, Date durasi) {
-        this.id = id;
-        this.status = status;
+    public Mesin(int idMesin, boolean statusMesin, float kapasitas, Date durasi) {
+        this.idMesin = idMesin;
+        this.statusMesin = statusMesin;
         this.kapasitas = kapasitas;
         this.durasi = durasi;
     }
 
-    public Mesin(boolean status, float kapasitas, Date durasi) {
-        this.status = status;
+    public Mesin(boolean statusMesin, float kapasitas, Date durasi) {
+        this.statusMesin = statusMesin;
         this.kapasitas = kapasitas;
         this.durasi = durasi;
     }
 
-    public int getId() {
-        return id;
+    public int getIdMesin() {
+        return idMesin;
     }
 
-    public boolean getStatus() {
-        return status;
+    public boolean getStatusMesin() {
+        return statusMesin;
     }
 
     public float getKapasitas() {
@@ -40,12 +40,12 @@ public abstract class Mesin {
         return durasi;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdMesin(int idMesin) {
+        this.idMesin = idMesin;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setStatusMesin(boolean statusMesin) {
+        this.statusMesin = statusMesin;
     }
 
     public void setKapasitas(float kapasitas) {
