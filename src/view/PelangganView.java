@@ -4,6 +4,10 @@ package view;
  *
  * @author Adit
  */
+
+import javax.swing.JOptionPane;
+import control.PelangganControl;
+
 public class PelangganView extends javax.swing.JFrame {
 
     /**
@@ -90,6 +94,11 @@ public class PelangganView extends javax.swing.JFrame {
         );
 
         cucianPanel.setBackground(new java.awt.Color(219, 226, 239));
+        cucianPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cucianPanelMouseClicked(evt);
+            }
+        });
 
         cucianLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         cucianLabel.setText("Cucian");
@@ -410,6 +419,13 @@ public class PelangganView extends javax.swing.JFrame {
     private void idInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idInputActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_idInputActionPerformed
+
+    private void cucianPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cucianPanelMouseClicked
+        // TODO add your handling code here:
+        CucianView cv = new CucianView();
+        this.dispose();
+        cv.setVisible(true);
+    }//GEN-LAST:event_cucianPanelMouseClicked
 
     /**
      * @param args the command line arguments
