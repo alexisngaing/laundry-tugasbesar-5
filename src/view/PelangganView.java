@@ -121,6 +121,11 @@ public class PelangganView extends javax.swing.JFrame {
         );
 
         transaksiPanel.setBackground(new java.awt.Color(219, 226, 239));
+        transaksiPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                transaksiPanelMouseClicked(evt);
+            }
+        });
 
         transaksiLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         transaksiLabel.setText("Transaksi");
@@ -143,6 +148,11 @@ public class PelangganView extends javax.swing.JFrame {
         );
 
         mesinLabel.setBackground(new java.awt.Color(219, 226, 239));
+        mesinLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mesinLabelMouseClicked(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel5.setText("Mesin");
@@ -426,6 +436,20 @@ public class PelangganView extends javax.swing.JFrame {
         this.dispose();
         cv.setVisible(true);
     }//GEN-LAST:event_cucianPanelMouseClicked
+
+    private void transaksiPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_transaksiPanelMouseClicked
+        // TODO add your handling code here:
+        TransaksiView tv = new TransaksiView();
+        this.dispose();
+        tv.setVisible(true);
+    }//GEN-LAST:event_transaksiPanelMouseClicked
+
+    private void mesinLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mesinLabelMouseClicked
+        // TODO add your handling code here:
+        MesinView mv = new MesinView();
+        this.dispose();
+        mv.setVisible(true);
+    }//GEN-LAST:event_mesinLabelMouseClicked
 
     /**
      * @param args the command line arguments
