@@ -348,33 +348,26 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="idPelangganLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="idMesinLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="idComboBox" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
-                                  <Component id="mesinComboBox" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="tglKeluarLabel" min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="tglMasukLabel" min="-2" max="-2" attributes="0"/>
-                                      <Component id="beratLabel" min="-2" max="-2" attributes="0"/>
-                                      <Component id="beratInput" max="32767" attributes="0"/>
-                                      <Component id="tglMasukInput" alignment="0" pref="115" max="32767" attributes="0"/>
-                                  </Group>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="249" max="-2" attributes="0"/>
-                              <Component id="tglKeluarInput" min="-2" pref="115" max="-2" attributes="0"/>
+                          <Component id="idPelangganLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="idMesinLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="idComboBox" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                          <Component id="mesinComboBox" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="tglKeluarInput" min="-2" pref="115" max="-2" attributes="0"/>
+                          <Component id="tglKeluarLabel" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="tglMasukLabel" min="-2" max="-2" attributes="0"/>
+                              <Component id="beratLabel" min="-2" max="-2" attributes="0"/>
+                              <Component id="beratInput" max="32767" attributes="0"/>
+                              <Component id="tglMasukInput" alignment="0" pref="115" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="252" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -402,10 +395,10 @@
                               <Component id="tglMasukInput" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="tglKeluarLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="tglKeluarInput" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="tglKeluarInput" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="39" max="32767" attributes="0"/>
                   </Group>
               </Group>
