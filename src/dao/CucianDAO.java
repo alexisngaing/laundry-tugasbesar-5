@@ -83,17 +83,17 @@ public class CucianDAO {
             
             if(rs != null ){
                 while(rs.next()){
-//                    rs = new Cucian(
-//                            Integer.parseInt(rs.getString("id")),
-//                            Boolean.parseBoolean(rs.getString("status")),
-//                            Float.parseFloat(rs.getString("berat")),
-//                            rs.getString("tglMasuk"),
-//                            rs.getString("tglKeluar"),
-//                            Integer.parseInt(rs.getString("idMesin")),
-//                            Boolean.parseBoolean(rs.getString("statusMesin")),
-//                            Float.parseFloat(rs.getString("kapasitas")),
-//                            rs.getDate("durasi") 
-//                    );
+                    cucian = new Cucian(
+                            rs.getInt("id"),
+                            rs.getBoolean("status"),
+                            rs.getFloat("berat"),
+                            rs.getString("tglMasuk"),
+                            rs.getString("tglKeluar"),
+                            rs.getInt("idMesin"),
+                            rs.getBoolean("statusMesin"),
+                            rs.getFloat("kapasitas"),
+                            rs.getDate("durasi") 
+                    );
                     
                 }       
             }
