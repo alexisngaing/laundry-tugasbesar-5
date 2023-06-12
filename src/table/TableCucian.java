@@ -3,10 +3,7 @@ package table;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import model.Cucian;
-/**
- *
- * @author yamacat
- */
+
 public class TableCucian extends AbstractTableModel {
     private List<Cucian> list;
 
@@ -21,17 +18,24 @@ public class TableCucian extends AbstractTableModel {
     
     @Override
     public int getColumnCount() {
-        return 8;
+        return 6;
     }
     
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch (columnIndex) {
-//            case 0 :
-//                return list.get(rowIndex).;
-//            case 1 :
-//                return list.get(rowIndex).;
-//
+            case 0 :
+                return list.get(rowIndex).getId();
+            case 1 :
+                return list.get(rowIndex).getStatus();
+            case 2 :
+                return list.get(rowIndex).getBerat();
+            case 3 :
+                return list.get(rowIndex).getTglMasuk();
+            case 4 :
+                return list.get(rowIndex).getMesinCuci().getIdMesin();
+            case 5 :
+                return list.get(rowIndex).getDryer().getIdMesin();
             default :
                 return null;
         }
@@ -40,22 +44,18 @@ public class TableCucian extends AbstractTableModel {
     @Override
     public String getColumnName(int column) {
         switch (column) {
-//            case 0 :
-//                return "Nama Tenaga Medis";
-//            case 1 :
-//                return "Jenis Tenaga Medis";
-//            case 2 :
-//                return "Nama Pasien";
-//            case 3 :
-//                return "Diagnosis";
-//            case 4 :
-//                return "Total Biaya";
-//            case 5 :
-//                return "Tindakan";
-//            case 6 :
-//                return "NPAIDI";
-//            case 7 :
-//                return "PPNI";
+            case 0 :
+                return "ID Cucian";
+            case 1 :
+                return "Status";
+            case 2 :
+                return "Berat";
+            case 3 :
+                return "Tanggal Masuk";
+            case 4 :
+                return "Masin Cuci";
+            case 5 :
+                return "Mesin Dryer";
             default :
                 return null;
         } 
