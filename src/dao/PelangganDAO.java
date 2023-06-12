@@ -93,6 +93,44 @@ public class PelangganDAO {
 
         return p;
     }
+    
+    public List<Pelanggan> showPelangganBySearch(String query) {
+        con = dbCon.makeConnection();
+        
+        String sql = "SELECT * FROM pelanggan WHERE (id LIKE "
+                + "'%" + query + "%'"
+                + "OR nama LIKE '%" + query + "%'"
+                + "OR noTelp LIKE '%" + query + "%'"
+                + "OR alamat LIKE '%" + query + "%')";
+        
+        System.out.println("Mengambil data Pasien...");
+        
+        List<Pelanggan> list = new ArrayList();
+        
+        try {
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+            
+            if (rs != null) {
+                while (rs.next()) {
+                    Pelanggan p = new Pelanggan(
+                            Integer.parseInt(rs.getString("id")),
+                            rs.getString("nama"),
+                            rs.getString("noTelp"),
+                            rs.getString("alamat")
+                    );
+                    list.add(p);
+                }
+            }
+            rs.close();
+            statement.close();
+        } catch (Exception e) {
+            System.err.println("Error reading database!");
+            System.out.println(e);
+        }
+        dbCon.closeConnection();
+        return list;
+    }
 
     public void updatePelanggan(Pelanggan p, int id) {
         con = dbCon.makeConnection();
@@ -105,7 +143,7 @@ public class PelangganDAO {
         try {
             Statement statement = con.createStatement();
             int result = statement.executeUpdate(sql);
-            System.out.println("Edited " + result + " Pelanggan" + id);
+            System.out.println("Edited " + result + " Pelanggan " + id);
             statement.close();
         } catch (Exception e) {
             System.out.println("[!] Error update Pelanggan...");
