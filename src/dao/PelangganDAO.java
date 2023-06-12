@@ -64,10 +64,10 @@ public class PelangganDAO {
         return list;
     }
 
-    public Pelanggan searchPelanggan(String nama) {
+    public Pelanggan searchPelanggan(String cari) {
         con = dbCon.makeConnection();
 
-        String sql = "SELECT * FROM pelanggan WHERE nama LIKE '%" + nama + "%'";
+        String sql = "SELECT * FROM pelanggan WHERE nama LIKE '%" + cari + "%' OR id LIKE '%" + cari + "%'";
         System.out.println("Searching Pelanggan...");
         Pelanggan p = null;
 
@@ -103,7 +103,7 @@ public class PelangganDAO {
                 + "OR noTelp LIKE '%" + query + "%'"
                 + "OR alamat LIKE '%" + query + "%')";
         
-        System.out.println("Mengambil data Pasien...");
+        System.out.println("Searching data Pelanggan...");
         
         List<Pelanggan> list = new ArrayList();
         
@@ -125,7 +125,7 @@ public class PelangganDAO {
             rs.close();
             statement.close();
         } catch (Exception e) {
-            System.err.println("Error reading database!");
+            System.err.println("Error searching database!");
             System.out.println(e);
         }
         dbCon.closeConnection();
