@@ -21,6 +21,7 @@ import table.TableCucian;
 import table.TablePelanggan;
 import table.TableTransaksi;
 import exception.inputKosongException;
+import java.time.LocalDate;
 
 public class CucianView extends javax.swing.JFrame {
     
@@ -28,6 +29,8 @@ public class CucianView extends javax.swing.JFrame {
     private PelangganControl pControl;
     private TransaksiControl tControl;
     private MesinControl mControl;
+    private LocalDate today;
+    private LocalDate tomorrow;
     
     List<Cucian> listCucian;
     List<Pelanggan> listPelanggan;
@@ -316,6 +319,7 @@ public class CucianView extends javax.swing.JFrame {
 
         tglMasukLabel.setText("Tanggal Masuk");
 
+        tglMasukInput.setEditable(false);
         tglMasukInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tglMasukInputActionPerformed(evt);
@@ -324,6 +328,7 @@ public class CucianView extends javax.swing.JFrame {
 
         tglKeluarLabel.setText("Tanggal Keluar");
 
+        tglKeluarInput.setEditable(false);
         tglKeluarInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tglKeluarInputActionPerformed(evt);
@@ -572,7 +577,7 @@ public class CucianView extends javax.swing.JFrame {
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         if (action.equals("Tambah")) {
-            Cucian c = new Cucian(Float.parseFloat(beratInput.getText()), DateTimeFormatter.ofPattern("yyyy-MM-dd").format(java.time.LocalDate.now()), tglKeluarInput.getText());
+            Cucian c = new Cucian(Float.parseFloat(beratInput.getText()), today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")), tomorrow.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
             cControl.insertDataCucian(c);
         } else if(action.equals("Ubah")) {
             Cucian c = new Cucian(Float.parseFloat(beratInput.getText()), DateTimeFormatter.ofPattern("yyyy-MM-dd").format(java.time.LocalDate.now()), tglKeluarInput.getText());
@@ -615,7 +620,11 @@ public class CucianView extends javax.swing.JFrame {
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         setComponent(true);
         action = "Tambah";
+        today = LocalDate.now();
+        tomorrow = today.plusDays(2);
         clearText();
+        tglMasukInput.setText(today.format(DateTimeFormatter.ofPattern("dd/MM/YYYY")));
+        tglKeluarInput.setText(tomorrow.format(DateTimeFormatter.ofPattern("dd/MM/YYYY")));
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void mesinDropdownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mesinDropdownActionPerformed
