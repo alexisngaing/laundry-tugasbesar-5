@@ -57,10 +57,10 @@ public class TransaksiDAO {
                     Pelanggan pelanggan = pelangganDAO.searchPelanggan(sql);
 
                     CucianDAO cucianDAO = new CucianDAO();
-//                    Cucian cucian = cucianDAO.searchCucianById(idCucian);
+                    Cucian cucian = cucianDAO.searchCucian(idCucian);
 
-//                    Transaksi transaksi = new Transaksi(idTransaksi, totalBiaya, pelanggan, cucian);
-//                    list.add(transaksi);
+                    Transaksi transaksi = new Transaksi(idTransaksi, totalBiaya, pelanggan, cucian);
+                    list.add(transaksi);
                 }
             }
         } catch (Exception e) {
@@ -92,9 +92,9 @@ public class TransaksiDAO {
                 Pelanggan pelanggan = pelangganDAO.searchPelanggan("nama");
 
                 CucianDAO cucianDAO = new CucianDAO();
-//                Cucian cucian = cucianDAO(idCucian);
+                Cucian cucian = cucianDAO.searchCucian(idCucian);
 
-//                transaksi = new Transaksi(idTransaksi, totalBiaya, pelanggan, cucian);
+                transaksi = new Transaksi(idTransaksi, totalBiaya, pelanggan, cucian);
             }
         } catch (Exception e) {
             System.out.println("[!] Error Searching Transaksi...");
