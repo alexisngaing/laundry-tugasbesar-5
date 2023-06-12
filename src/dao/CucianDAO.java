@@ -6,18 +6,21 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
 import model.Cucian;
+import model.Pelanggan;
+import model.Mesin;
 
 public class CucianDAO {
     private DbConnection dbCon = new DbConnection();
     private Connection con;
     
-    public void insertCucian(Cucian C){
+    public void insertCucian(Cucian c){
         con = dbCon.makeConnection();
         
         String sql = "INSERT INTO cucian(statusCuci, statusDry, berat, tglMasuk, tglKeluar, idPelanggan, idMesin) "
-                + "VALUES ('False', 'False', '" + C.getBerat() + "', '" + C.getTglMasuk() +"', '"
-                + C.getTglKeluar() +"', '0', '0')";
+                + "VALUES ('False', 'False', '" + c.getBerat() + "', '" + c.getTglMasuk() +"', '"
+                + c.getTglKeluar() +"', '0', '0')";
         
         System.out.println("Adding Cucian");
         
@@ -29,14 +32,22 @@ public class CucianDAO {
         } catch (Exception e) {
             System.out.println("[!] Error Adding Cucian");
             System.out.println(e);
-        }
-        
+        }   
     }
     
-    public List<Cucian> showCucian(){
+    public List<Cucian> showCucian(String query) {
         con = dbCon.makeConnection();
         
-        String sql = "SELECT * FROM Cucian";
+        String sql = "SELECT c.*, p.*, m.* FROM cucian as c JOIN mesin as m ON c.idMesin = m.id JOIN pelanggan as p ON c.idPelanggan = p.id WHERE (c.id LIKE "
+                + "'%" + query + "%'"
+//                + "OR c.statusCuci LIKE '%" + query + "%'"
+//                + "OR c.statusDry LIKE '%" + query + "%'"
+                + "OR c.berat LIKE '%" + query + "%'"
+                + "OR c.tglMasuk LIKE '%" + query + "%'"
+                + "OR m.idMesin LIKE '%" + query + "%"
+                + "OR p.nama LIKE '%" + query + "%')"
+                + "ORDER BY c.id";
+        
         System.out.println("Mengambil data Cucian...");
 
         List<Cucian> list = new ArrayList();
@@ -47,21 +58,33 @@ public class CucianDAO {
 
             if (rs != null) {
                 while (rs.next()) {
+                    Mesin m = new Mesin(
+                            rs.getInt("m.id"),
+                            rs.getBoolean("m.status"),
+                            rs.getFloat("m.kapasitas"),
+                            rs.getString("m.durasi")
+                    );
+                    
+                    Pelanggan p = new Pelanggan(
+                            rs.getInt("p.id"),
+                            rs.getString("p.nama"),
+                            rs.getString("p.noTelp"),
+                            rs.getString("p.alamat")
+                    );
+                    
                     Cucian c = new Cucian(
-                            rs.getInt("id"),
-                            rs.getBoolean("status"),
-                            rs.getFloat("berat"),
-                            rs.getString("tglMasuk"),
-                            rs.getString("tglKeluar"),
-                            rs.getInt("idMesin"),
-                            rs.getBoolean("statusMesin"),
-                            rs.getFloat("kapasitas"),
-                            rs.getDate("durasi")
+                            rs.getInt("c.id"),
+                            rs.getBoolean("c.statusCuci"),
+                            rs.getBoolean("c.statusDry"),
+                            rs.getFloat("c.berat"),
+                            rs.getString("c.tglMasuk"),
+                            rs.getString("c.tglKeluar"),
+                            m, p
                     );
                     list.add(c);
                 }
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("[!] Error Reading Cucian...");
             System.out.println(e);
         }
@@ -72,7 +95,7 @@ public class CucianDAO {
     public Cucian searchCucian(int idCucian){
         con = dbCon.makeConnection();
         
-        String sql = "SELECT * FROM cucian WHERE idCucian = " +idCucian;
+        String sql = "SELECT * FROM cucian WHERE id = " + idCucian;
         System.out.println("Searching Cucian...");
         
         Cucian cucian = null;
@@ -81,20 +104,31 @@ public class CucianDAO {
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery(sql);
             
-            if(rs != null ){
-                while(rs.next()){
-                    cucian = new Cucian(
-                            rs.getInt("id"),
-                            rs.getBoolean("status"),
-                            rs.getFloat("berat"),
-                            rs.getString("tglMasuk"),
-                            rs.getString("tglKeluar"),
-                            rs.getInt("idMesin"),
-                            rs.getBoolean("statusMesin"),
-                            rs.getFloat("kapasitas"),
-                            rs.getDate("durasi") 
+            if (rs != null ) {
+                while (rs.next()) {
+                    Mesin m = new Mesin(
+                            rs.getInt("m.id"),
+                            rs.getBoolean("m.status"),
+                            rs.getFloat("m.kapasitas"),
+                            rs.getString("m.durasi")
                     );
                     
+                    Pelanggan p = new Pelanggan(
+                            rs.getInt("p.id"),
+                            rs.getString("p.nama"),
+                            rs.getString("p.noTelp"),
+                            rs.getString("p.alamat")
+                    );
+                    
+                    Cucian c = new Cucian(
+                            rs.getInt("c.id"),
+                            rs.getBoolean("c.statusCuci"),
+                            rs.getBoolean("c.statusDry"),
+                            rs.getFloat("c.berat"),
+                            rs.getString("c.tglMasuk"),
+                            rs.getString("c.tglKeluar"),
+                            m, p
+                    );
                 }       
             }
             rs.close();
@@ -111,10 +145,16 @@ public class CucianDAO {
     public void updateCucian(Cucian c){
         con = dbCon.makeConnection();
         
-        String sql = "UPDATE cucian SET berat = '" + c.getBerat() + "', "
-                + "tglMasuk = '" + c.getTglMasuk() +"', tglKeluar = '" + c.getTglKeluar() +"' "
-                + "WHERE id = '" +c.getId()+ "'";
-        System.out.println("Update data Cucian");
+        String sql = "UPDATE cucian SET "
+                + "statusCuci = '" + c.isStatusCuci() + "', "
+                + "statusDry = '" + c.isStatusDry() + "', "
+                + "berat = '" + c.getBerat() + "', "
+                + "tglMasuk = '" + c.getTglMasuk() + "', "
+                + "tglKeluar = '" + c.getTglKeluar() + "', "
+                + "idPelanggan = '" + c.getPelanggan().getIdPelanggan() + "', "
+                + "idMesin = '" + c.getMesin().getIdMesin() + "'"
+                + "WHERE id = '" + c.getId()+ "'";
+        System.out.println("Update data Cucian...");
         
         try {
             Statement statement = con.createStatement();
