@@ -5,6 +5,10 @@ package view;
  * @author Adit
  */
 
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import control.CucianControl;
 import java.util.List;
@@ -267,6 +271,12 @@ public class CucianView extends javax.swing.JFrame {
 
         tglMasukLabel.setText("Tanggal Masuk");
 
+        tglMasukInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tglMasukInputActionPerformed(evt);
+            }
+        });
+
         tglKeluarLabel.setText("Tanggal Keluar");
 
         tglKeluarInput.addActionListener(new java.awt.event.ActionListener() {
@@ -290,14 +300,11 @@ public class CucianView extends javax.swing.JFrame {
                     .addGroup(dataPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(dataPanelLayout.createSequentialGroup()
-                                .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(idPelangganLabel)
-                                    .addComponent(idMesinLabel))
-                                .addGap(86, 86, 86))
+                            .addComponent(idPelangganLabel)
+                            .addComponent(idMesinLabel)
                             .addComponent(idComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(mesinComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(89, 89, 89)
+                        .addGap(96, 96, 96)
                         .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tglKeluarLabel)
                             .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -451,7 +458,7 @@ public class CucianView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(dataPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)
                     .addGroup(panel2Layout.createSequentialGroup()
                         .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
@@ -517,14 +524,13 @@ public class CucianView extends javax.swing.JFrame {
     }//GEN-LAST:event_tglKeluarInputActionPerformed
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
-        if(action.equals("Tambah")){
-            Cucian c = new Cucian(Float.parseFloat(beratInput.getText()), tglMasukInput.getText(), tglKeluarInput.getText());
+        if (action.equals("Tambah")) {
+            Cucian c = new Cucian(Float.parseFloat(beratInput.getText()), DateTimeFormatter.ofPattern("yyyy-dd-MM").format(java.time.LocalDate.now()), tglKeluarInput.getText());
             cControl.insertDataCucian(c);
-        }else if(action.equals("Ubah")){
-            Cucian c = new Cucian(Float.parseFloat(beratInput.getText()), tglMasukInput.getText(), tglKeluarInput.getText());
+        } else if(action.equals("Ubah")) {
+            Cucian c = new Cucian(Float.parseFloat(beratInput.getText()), DateTimeFormatter.ofPattern("yyyy-dd-MM").format(java.time.LocalDate.now()), tglKeluarInput.getText());
             cControl.updateCucian(c);
         }
-        
         JOptionPane.showMessageDialog(null, "Berhasil Tambah Data Cucian!");
         clearText();
         showCucian();
@@ -589,6 +595,10 @@ public class CucianView extends javax.swing.JFrame {
                 break;
         }
     }//GEN-LAST:event_deleteBtnActionPerformed
+
+    private void tglMasukInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tglMasukInputActionPerformed
+        
+    }//GEN-LAST:event_tglMasukInputActionPerformed
 
     /**
      * @param args the command line arguments
