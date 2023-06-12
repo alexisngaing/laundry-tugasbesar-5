@@ -72,6 +72,11 @@ public class CucianView extends javax.swing.JFrame {
         laundryLabel.setText("LAUNDRY");
 
         pelangganPanel.setBackground(new java.awt.Color(219, 226, 239));
+        pelangganPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pelangganPanelMouseClicked(evt);
+            }
+        });
 
         pelangganLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         pelangganLabel.setText("Pelanggan");
@@ -116,6 +121,11 @@ public class CucianView extends javax.swing.JFrame {
         );
 
         transaksiPanel.setBackground(new java.awt.Color(219, 226, 239));
+        transaksiPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                transaksiPanelMouseClicked(evt);
+            }
+        });
 
         transaksiLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         transaksiLabel.setText("Transaksi");
@@ -138,6 +148,11 @@ public class CucianView extends javax.swing.JFrame {
         );
 
         mesinLabel.setBackground(new java.awt.Color(219, 226, 239));
+        mesinLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mesinLabelMouseClicked(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel5.setText("Mesin");
@@ -467,6 +482,27 @@ public class CucianView extends javax.swing.JFrame {
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cancelBtnActionPerformed
+
+    private void pelangganPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pelangganPanelMouseClicked
+        // TODO add your handling code here:
+        PelangganView pv = new PelangganView();
+        this.dispose();
+        pv.setVisible(true);
+    }//GEN-LAST:event_pelangganPanelMouseClicked
+
+    private void transaksiPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_transaksiPanelMouseClicked
+        // TODO add your handling code here:
+        TransaksiView tv = new TransaksiView();
+        this.dispose();
+        tv.setVisible(true);
+    }//GEN-LAST:event_transaksiPanelMouseClicked
+
+    private void mesinLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mesinLabelMouseClicked
+        // TODO add your handling code here:
+        MesinView mv = new MesinView();
+        this.dispose();
+        mv.setVisible(true);
+    }//GEN-LAST:event_mesinLabelMouseClicked
 
     /**
      * @param args the command line arguments
