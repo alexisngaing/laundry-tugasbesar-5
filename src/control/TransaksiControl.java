@@ -3,6 +3,7 @@ package control;
 import model.Transaksi;
 import dao.TransaksiDAO;
 import java.util.List;
+import table.TableTransaksi;
 
 public class TransaksiControl {
     private TransaksiDAO transaksiDAO = new TransaksiDAO();
@@ -18,6 +19,13 @@ public class TransaksiControl {
             transaksiString = transaksiString + dataTransaksi.get(i).toString() + "\n";
         }
         return transaksiString;
+    }
+    
+    public TableTransaksi showDataTransaksi(){
+        List<Transaksi> dataTransaksi = transaksiDAO.showTransaksi();
+        TableTransaksi tableTransaksi = new TableTransaksi(dataTransaksi);
+        
+        return tableTransaksi;
     }
 
     public Transaksi searchTransaksi(int idTransaksi) {
