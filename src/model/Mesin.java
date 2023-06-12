@@ -57,4 +57,8 @@ public /* abstract */ class Mesin {
     }
 
 //    public abstract boolean cekStatusMesin();
+    @Override
+    public String toString(){
+        return Integer.toString(idMesin);
+    }
 }
