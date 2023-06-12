@@ -4,13 +4,54 @@ package view;
  *
  * @author Adit
  */
-public class CucianView extends javax.swing.JFrame {
 
-    /**
-     * Creates new form CucianView
-     */
+import javax.swing.JOptionPane;
+import control.CucianControl;
+import java.util.List;
+import javax.swing.table.TableModel;
+import model.Cucian;
+import table.TableCucian;
+
+public class CucianView extends javax.swing.JFrame {
+    
+    private CucianControl cControl;
+    List<Cucian> listCucian;
+    int selectedId = 0;
+    String action = null;
+    
     public CucianView() {
         initComponents();
+        setComponent(false);
+        setEditDeleteBtn(false);
+        cControl = new CucianControl();
+        showCucian();
+    }
+    
+    public void setComponent(boolean value){
+        idComboBox.setEnabled(value);
+        mesinComboBox.setEnabled(value);
+        beratInput.setEnabled(value);
+        tglMasukInput.setEnabled(value);
+        tglKeluarInput.setEnabled(value);
+        
+        saveBtn.setEnabled(value);
+        cancelBtn.setEnabled(value);
+    }
+    
+    public void setEditDeleteBtn(boolean value){
+        editBtn.setEnabled(value);
+        deleteBtn.setEnabled(value);
+    }
+    
+    public void showCucian(){
+        //tabelCucian.setModel(cControl.showPelanggan());
+    }
+    
+    public void clearText(){
+        searchInput.setText("");
+        beratInput.setText("");
+        tglMasukInput.setText("");
+        tglKeluarInput.setText("");
     }
 
     /**
@@ -35,8 +76,6 @@ public class CucianView extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         panel2 = new javax.swing.JPanel();
         dataPanel = new javax.swing.JPanel();
-        idCuciLabel = new javax.swing.JLabel();
-        idCuciInput = new javax.swing.JTextField();
         idPelangganLabel = new javax.swing.JLabel();
         idMesinLabel = new javax.swing.JLabel();
         beratLabel = new javax.swing.JLabel();
@@ -214,15 +253,6 @@ public class CucianView extends javax.swing.JFrame {
 
         dataPanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        idCuciLabel.setText("ID Cucian");
-
-        idCuciInput.setEditable(false);
-        idCuciInput.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                idCuciInputActionPerformed(evt);
-            }
-        });
-
         idPelangganLabel.setText("ID Pelanggan");
 
         idMesinLabel.setText("ID Mesin");
@@ -245,24 +275,29 @@ public class CucianView extends javax.swing.JFrame {
             }
         });
 
+        mesinComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mesinComboBoxActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout dataPanelLayout = new javax.swing.GroupLayout(dataPanel);
         dataPanel.setLayout(dataPanelLayout);
         dataPanelLayout.setHorizontalGroup(
             dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dataPanelLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(dataPanelLayout.createSequentialGroup()
-                        .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addContainerGap()
+                        .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(dataPanelLayout.createSequentialGroup()
                                 .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(idCuciLabel)
                                     .addComponent(idPelangganLabel)
                                     .addComponent(idMesinLabel))
-                                .addGap(175, 175, 175))
-                            .addGroup(dataPanelLayout.createSequentialGroup()
-                                .addComponent(idComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(89, 89, 89)))
+                                .addGap(86, 86, 86))
+                            .addComponent(idComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(mesinComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(89, 89, 89)
                         .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tglKeluarLabel)
                             .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -271,41 +306,36 @@ public class CucianView extends javax.swing.JFrame {
                                 .addComponent(beratInput)
                                 .addComponent(tglMasukInput, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))))
                     .addGroup(dataPanelLayout.createSequentialGroup()
-                        .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(idCuciInput, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(mesinComboBox, 0, 150, Short.MAX_VALUE))
-                        .addGap(89, 89, 89)
+                        .addGap(249, 249, 249)
                         .addComponent(tglKeluarInput, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(220, Short.MAX_VALUE))
+                .addContainerGap(252, Short.MAX_VALUE))
         );
         dataPanelLayout.setVerticalGroup(
             dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dataPanelLayout.createSequentialGroup()
                 .addGap(11, 11, 11)
-                .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(idCuciLabel)
-                    .addComponent(beratLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(idCuciInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(beratInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13)
-                .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(idPelangganLabel)
-                    .addComponent(tglMasukLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tglMasukInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(idComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(idMesinLabel)
-                    .addComponent(tglKeluarLabel))
+                .addComponent(beratLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tglKeluarInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(mesinComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(37, Short.MAX_VALUE))
+                    .addGroup(dataPanelLayout.createSequentialGroup()
+                        .addComponent(idPelangganLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(idComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(idMesinLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(mesinComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(dataPanelLayout.createSequentialGroup()
+                        .addComponent(beratInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)
+                        .addComponent(tglMasukLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tglMasukInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(tglKeluarLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tglKeluarInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -365,12 +395,27 @@ public class CucianView extends javax.swing.JFrame {
 
         addBtn.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 11)); // NOI18N
         addBtn.setText("Tambah");
+        addBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBtnActionPerformed(evt);
+            }
+        });
 
         editBtn.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 11)); // NOI18N
         editBtn.setText("Edit");
+        editBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editBtnActionPerformed(evt);
+            }
+        });
 
         deleteBtn.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 11)); // NOI18N
         deleteBtn.setText("Hapus");
+        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBtnActionPerformed(evt);
+            }
+        });
 
         saveBtn.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 11)); // NOI18N
         saveBtn.setText("Simpan");
@@ -463,10 +508,6 @@ public class CucianView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void idCuciInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idCuciInputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_idCuciInputActionPerformed
-
     private void beratInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beratInputActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_beratInputActionPerformed
@@ -476,7 +517,19 @@ public class CucianView extends javax.swing.JFrame {
     }//GEN-LAST:event_tglKeluarInputActionPerformed
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
-        // TODO add your handling code here:
+        if(action.equals("Tambah")){
+            Cucian c = new Cucian(Float.parseFloat(beratInput.getText()), tglMasukInput.getText(), tglKeluarInput.getText());
+            cControl.insertDataCucian(c);
+        }else if(action.equals("Ubah")){
+            Cucian c = new Cucian(Float.parseFloat(beratInput.getText()), tglMasukInput.getText(), tglKeluarInput.getText());
+            cControl.updateCucian(c);
+        }
+        
+        JOptionPane.showMessageDialog(null, "Berhasil Tambah Data Cucian!");
+        clearText();
+        showCucian();
+        setComponent(false);
+        setEditDeleteBtn(false);
     }//GEN-LAST:event_saveBtnActionPerformed
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
@@ -503,6 +556,39 @@ public class CucianView extends javax.swing.JFrame {
         this.dispose();
         mv.setVisible(true);
     }//GEN-LAST:event_mesinLabelMouseClicked
+
+    private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
+        setComponent(true);
+        action = "Tambah";
+        clearText();
+    }//GEN-LAST:event_addBtnActionPerformed
+
+    private void mesinComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mesinComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mesinComboBoxActionPerformed
+
+    private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
+        setComponent (true); 
+        action = "Ubah";
+    }//GEN-LAST:event_editBtnActionPerformed
+
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        int getAnswer = JOptionPane.showConfirmDialog (rootPane, "Apakah anda yakin ingin menghapus data ?", 
+                "Konfirmasi", JOptionPane.YES_NO_OPTION);
+        
+        switch(getAnswer){
+            case 0:
+                clearText();
+                    cControl.deleteCucian(selectedId);
+                    setComponent(false);
+                    showCucian();
+                    setEditDeleteBtn (false);
+                    JOptionPane.showMessageDialog(this, "Data Berhasil Dihapus");
+                break;
+            case 1:
+                break;
+        }
+    }//GEN-LAST:event_deleteBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -550,8 +636,6 @@ public class CucianView extends javax.swing.JFrame {
     private javax.swing.JButton deleteBtn;
     private javax.swing.JButton editBtn;
     private javax.swing.JComboBox<String> idComboBox;
-    private javax.swing.JTextField idCuciInput;
-    private javax.swing.JLabel idCuciLabel;
     private javax.swing.JLabel idMesinLabel;
     private javax.swing.JLabel idPelangganLabel;
     private javax.swing.JLabel jLabel1;
