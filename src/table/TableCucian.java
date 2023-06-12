@@ -33,7 +33,7 @@ public class TableCucian extends AbstractTableModel {
             case 3 :
                 return list.get(rowIndex).getMesin().getIdMesin();
             case 4 :
-                return list.get(rowIndex).getPelanggan().getIdPelanggan();
+                return list.get(rowIndex).getPelanggan().getNama();
             default :
                 return null;
         }
@@ -51,7 +51,7 @@ public class TableCucian extends AbstractTableModel {
             case 3 :
                 return "Masin Cuci";
             case 4 :
-                return "Pelanggan";
+                return "Nama";
             default :
                 return null;
         } 
