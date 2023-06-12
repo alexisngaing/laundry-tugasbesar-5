@@ -20,7 +20,7 @@ public class CucianDAO {
         
         String sql = "INSERT INTO cucian(statusCuci, statusDry, berat, tglMasuk, tglKeluar, idPelanggan, idMesin) "
                 + "VALUES ('False', 'False', '" + c.getBerat() + "', '" + c.getTglMasuk() +"', '"
-                + c.getTglKeluar() +"', '0', '0')";
+                + c.getTglKeluar() +"', '"+ c.getPelanggan().getIdPelanggan() +"', '"+ c.getMesin().getIdMesin() +"')";
         
         System.out.println("Adding Cucian");
         
