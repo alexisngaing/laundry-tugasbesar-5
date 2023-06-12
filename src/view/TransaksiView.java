@@ -8,13 +8,38 @@ package view;
  *
  * @author Adit
  */
+
+import javax.swing.JOptionPane;
+import control.TransaksiControl;
+import java.util.List;
+import javax.swing.table.TableModel;
+import model.Transaksi;
+import table.TableTransaksi;
+
 public class TransaksiView extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TransaksiView
-     */
+    private TransaksiControl tControl;
+    List<Transaksi> listT;
+    int selectedId = 0;
+    String action = null;
+    
     public TransaksiView() {
         initComponents();
+        setComponent(false);
+        tControl = new TransaksiControl();
+        showTransaksi();
+    }
+    
+    public void setComponent(boolean value){
+        totalBiayaField.setEnabled(value);
+        bayarInput.setEnabled(value);
+        kembalianField.setEnabled(value);
+        bayarBtn.setEnabled(value);
+        cancelBtn.setEnabled(value);
+    }
+    
+    public void showTransaksi(){
+        tableTransaksi.setModel(tControl.showDataTransaksi());
     }
 
     /**
@@ -43,7 +68,7 @@ public class TransaksiView extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableTransaksi = new javax.swing.JTable();
         searchBtn = new javax.swing.JButton();
         searchInput = new javax.swing.JTextField();
         pembayaranLabel = new javax.swing.JLabel();
@@ -237,7 +262,7 @@ public class TransaksiView extends javax.swing.JFrame {
 
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableTransaksi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -248,7 +273,12 @@ public class TransaksiView extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        tableTransaksi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableTransaksiMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tableTransaksi);
 
         searchBtn.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 11)); // NOI18N
         searchBtn.setText("Cari");
@@ -431,6 +461,10 @@ public class TransaksiView extends javax.swing.JFrame {
         mv.setVisible(true);
     }//GEN-LAST:event_mesinLabelMouseClicked
 
+    private void tableTransaksiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableTransaksiMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tableTransaksiMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -482,7 +516,6 @@ public class TransaksiView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField kembalianField;
     private javax.swing.JLabel kembalianLabel;
     private javax.swing.JLabel laundryLabel;
@@ -493,6 +526,7 @@ public class TransaksiView extends javax.swing.JFrame {
     private javax.swing.JLabel pembayaranLabel;
     private javax.swing.JButton searchBtn;
     private javax.swing.JTextField searchInput;
+    private javax.swing.JTable tableTransaksi;
     private javax.swing.JTextField totalBiayaField;
     private javax.swing.JLabel totalBiayaLabel;
     private javax.swing.JLabel transaksiLabel;
