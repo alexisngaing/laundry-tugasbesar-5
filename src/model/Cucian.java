@@ -5,27 +5,24 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
-/**
- *
- * @author yamacat
- */
+
 public class Cucian {
     private int id;
     private boolean status;
     private float berat;
     private String tglMasuk;
     private String tglKeluar;
-    private MesinCuci mc;
-    private Dryer dr;
-    
-    public Cucian(int id, boolean status, float berat, String tglMasuk, String tglKeluar, int idMesin, boolean statusMesin, float kapasitas, Date durasi) {
-        mc = new MesinCuci(idMesin, statusMesin, kapasitas, durasi);
-        dr = new Dryer(idMesin, statusMesin, kapasitas, durasi);
+    private Mesin m;
+    private Pelanggan p;
+
+    public Cucian(int id, boolean status, float berat, String tglMasuk, String tglKeluar, Mesin m, Pelanggan p) {
         this.id = id;
         this.status = status;
         this.berat = berat;
         this.tglMasuk = tglMasuk;
         this.tglKeluar = tglKeluar;
+        this.m = m;
+        this.p = p;
     }
     
     public Cucian(float berat, String tglMasuk, String tglKeluar) {
@@ -38,7 +35,7 @@ public class Cucian {
         return id;
     }
 
-    public boolean getStatus() {
+    public boolean isStatus() {
         return status;
     }
 
@@ -54,12 +51,12 @@ public class Cucian {
         return tglKeluar;
     }
 
-    public MesinCuci getMesinCuci() {
-        return mc;
+    public Mesin getM() {
+        return m;
     }
 
-    public Dryer getDryer() {
-        return dr;
+    public Pelanggan getP() {
+        return p;
     }
 
     public void setId(int id) {
@@ -81,4 +78,13 @@ public class Cucian {
     public void setTglKeluar(String tglKeluar) {
         this.tglKeluar = tglKeluar;
     }
+
+    public void setM(Mesin m) {
+        this.m = m;
+    }
+
+    public void setP(Pelanggan p) {
+        this.p = p;
+    }
+
 }
