@@ -53,7 +53,7 @@ public class MesinDAO {
                     int idMesin = rs.getInt("idMesin");
                     boolean statusMesin = rs.getBoolean("statusMesin");
                     float kapasitas = rs.getFloat("kapasitas");
-                    Date durasi = rs.getDate("durasi");
+                    String durasi = rs.getString("durasi");
 
                     Mesin mesin = new MesinCuci(idMesin, statusMesin, kapasitas, durasi); // or Dryer
                     list.add(mesin);
@@ -82,7 +82,7 @@ public class MesinDAO {
             if (rs != null && rs.next()) {
                 boolean statusMesin = rs.getBoolean("statusMesin");
                 float kapasitas = rs.getFloat("kapasitas");
-                Date durasi = rs.getDate("durasi");
+                String durasi = rs.getString("durasi");
 
                 mesin = new MesinCuci(idMesin, statusMesin, kapasitas, durasi); // or Dryer
             }
