@@ -571,11 +571,17 @@ public class CucianView extends javax.swing.JFrame {
     }//GEN-LAST:event_tglKeluarInputActionPerformed
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+        int selectedIndexP = pelangganDropdown.getSelectedIndex();
+        Pelanggan selectedPelanggan = listPelanggan.get(selectedIndexP);
+        
+        int selectedIndexM = mesinDropdown.getSelectedIndex();
+        Mesin selectedMesin = listMesin.get(selectedIndexM);
+        
         if (action.equals("Tambah")) {
-            Cucian c = new Cucian(Float.parseFloat(beratInput.getText()), DateTimeFormatter.ofPattern("yyyy-MM-dd").format(java.time.LocalDate.now()), tglKeluarInput.getText());
+            Cucian c = new Cucian(Float.parseFloat(beratInput.getText()), DateTimeFormatter.ofPattern("yyyy-MM-dd").format(java.time.LocalDate.now()), tglKeluarInput.getText(), selectedMesin, selectedPelanggan);
             cControl.insertDataCucian(c);
         } else if(action.equals("Ubah")) {
-            Cucian c = new Cucian(Float.parseFloat(beratInput.getText()), DateTimeFormatter.ofPattern("yyyy-MM-dd").format(java.time.LocalDate.now()), tglKeluarInput.getText());
+            Cucian c = new Cucian(Float.parseFloat(beratInput.getText()), DateTimeFormatter.ofPattern("yyyy-MM-dd").format(java.time.LocalDate.now()), tglKeluarInput.getText(), selectedMesin, selectedPelanggan);
             cControl.updateCucian(c);
         }
         JOptionPane.showMessageDialog(null, "Berhasil Tambah Data Cucian!");
