@@ -12,8 +12,8 @@ public class CucianControl {
         cucianDAO.insertCucian(cucian);
     }
 
-    public TableCucian showCucian() {
-        List<Cucian> dataCucian = cucianDAO.showCucian();
+    public TableCucian showCucian(String query) {
+        List<Cucian> dataCucian = cucianDAO.showCucian(query);
         TableCucian tableCucian = new TableCucian(dataCucian);
 //        String cucianString = "";
 //        for (int i = 0; i < dataCucian.size(); i++) {
