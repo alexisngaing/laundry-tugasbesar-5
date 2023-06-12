@@ -34,6 +34,13 @@ public class PelangganControl {
         return p;
     }
     
+    public TablePelanggan searchDataPelanggan(String query) {
+        List<Pelanggan> dataPelanggan = pDao.showPelangganBySearch(query);
+        TablePelanggan tablePelanggan = new TablePelanggan(dataPelanggan);
+        
+        return tablePelanggan;
+    }
+    
     public void updatePelanggan(Pelanggan p, int id){
         pDao.updatePelanggan(p, id);
     }
