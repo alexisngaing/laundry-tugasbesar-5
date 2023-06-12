@@ -11,6 +11,7 @@ import java.util.List;
 import javax.swing.table.TableModel;
 import model.Pelanggan;
 import table.TablePelanggan;
+import exception.inputKosongException;
 
 public class PelangganView extends javax.swing.JFrame {
 
@@ -47,6 +48,12 @@ public class PelangganView extends javax.swing.JFrame {
         namaInput.setText("");
         nomorInput.setText("");
         alamatInput.setText("");
+    }
+    
+    public void inputKosongException() throws inputKosongException{
+        if(namaInput.getText().isEmpty() || nomorInput.getText().isEmpty() || alamatInput.getText().isEmpty()){
+            throw new inputKosongException();
+        }
     }
     
     public void showPelanggan(){
@@ -532,18 +539,24 @@ public class PelangganView extends javax.swing.JFrame {
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         // TODO add your handling code here:
-        if(action.equals("Tambah")){
-            Pelanggan p = new Pelanggan(namaInput.getText(), nomorInput.getText(), alamatInput.getText());
-            pControl.insertDataPelanggan(p);
-        }else{
-            Pelanggan p = new Pelanggan(selectedId, namaInput.getText(), nomorInput.getText(), alamatInput.getText());
-            pControl.updatePelanggan(p, selectedId);
+        try{
+            inputKosongException();
+            if(action.equals("Tambah")){
+                Pelanggan p = new Pelanggan(namaInput.getText(), nomorInput.getText(), alamatInput.getText());
+                pControl.insertDataPelanggan(p);
+            }else{
+                Pelanggan p = new Pelanggan(selectedId, namaInput.getText(), nomorInput.getText(), alamatInput.getText());
+                pControl.updatePelanggan(p, selectedId);
+            }
+            JOptionPane.showMessageDialog(null, "Berhasil Tambah Data Pelanggan!");
+            clearText();
+            showPelanggan();
+            setComponent(false);
+            setEditDeleteBtn(false);
+        }catch(inputKosongException e){
+            JOptionPane.showMessageDialog(this, e.message());
         }
-        JOptionPane.showMessageDialog(null, "Berhasil Tambah Data Pelanggan!");
-        clearText();
-        showPelanggan();
-        setComponent(false);
-        setEditDeleteBtn(false);
+        
     }//GEN-LAST:event_saveBtnActionPerformed
 
     private void tablePelangganMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablePelangganMouseClicked
