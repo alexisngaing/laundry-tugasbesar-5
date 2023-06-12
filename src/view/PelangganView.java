@@ -555,7 +555,7 @@ public class PelangganView extends javax.swing.JFrame {
             setEditDeleteBtn(false);
         }catch(inputKosongException e){
             JOptionPane.showMessageDialog(this, e.message());
-        }
+        } 
         
     }//GEN-LAST:event_saveBtnActionPerformed
 
