@@ -18,7 +18,7 @@ public class TableCucian extends AbstractTableModel {
     
     @Override
     public int getColumnCount() {
-        return 5;
+        return 6;
     }
     
     @Override
@@ -31,8 +31,10 @@ public class TableCucian extends AbstractTableModel {
             case 2 :
                 return list.get(rowIndex).getTglMasuk();
             case 3 :
-                return list.get(rowIndex).getMesin().getIdMesin();
+                return list.get(rowIndex).getTglKeluar();
             case 4 :
+                return list.get(rowIndex).getMesin().getIdMesin();
+            case 5 :
                 return list.get(rowIndex).getPelanggan().getNama();
             default :
                 return null;
@@ -49,8 +51,10 @@ public class TableCucian extends AbstractTableModel {
             case 2 :
                 return "Tanggal Masuk";
             case 3 :
-                return "Masin Cuci";
+                return "Estimasi Keluar";
             case 4 :
+                return "Mesin Cuci";
+            case 5 :
                 return "Nama";
             default :
                 return null;
