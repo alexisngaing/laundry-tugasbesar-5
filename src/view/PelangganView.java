@@ -7,14 +7,50 @@ package view;
 
 import javax.swing.JOptionPane;
 import control.PelangganControl;
+import java.util.List;
+import javax.swing.table.TableModel;
+import model.Pelanggan;
+import table.TablePelanggan;
 
 public class PelangganView extends javax.swing.JFrame {
 
-    /**
-     * Creates new form PelangganView
-     */
+    private PelangganControl pControl;
+    List<Pelanggan> listP;
+    int selectedId = 0;
+    String action = null;
+            
     public PelangganView() {
         initComponents();
+        setComponent(false);
+        setEditDeleteBtn(false);
+        pControl = new PelangganControl();
+        showPelanggan();
+    }
+    
+    public void setComponent(boolean value){
+        idInput.setEnabled(value);
+        namaInput.setEnabled(value);
+        nomorInput.setEnabled(value);
+        alamatInput.setEnabled(value);
+        
+        saveBtn.setEnabled(value);
+        cancelBtn.setEnabled(value);
+    }
+    
+    public void setEditDeleteBtn(boolean value){
+        editBtn.setEnabled(value);
+        deleteBtn.setEnabled(value);
+    }
+    
+    public void clearText(){
+        searchInput.setText("");
+        namaInput.setText("");
+        nomorInput.setText("");
+        alamatInput.setText("");
+    }
+    
+    public void showPelanggan(){
+        tablePelanggan.setModel(pControl.showPelanggan());
     }
 
     /**
@@ -57,11 +93,11 @@ public class PelangganView extends javax.swing.JFrame {
         addBtn = new javax.swing.JButton();
         editBtn = new javax.swing.JButton();
         deleteBtn = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        saveBtn = new javax.swing.JButton();
         cancelBtn = new javax.swing.JButton();
         tabelLabel = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablePelanggan = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -322,6 +358,11 @@ public class PelangganView extends javax.swing.JFrame {
 
         addBtn.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 11)); // NOI18N
         addBtn.setText("Tambah");
+        addBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBtnActionPerformed(evt);
+            }
+        });
 
         editBtn.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 11)); // NOI18N
         editBtn.setText("Edit");
@@ -329,8 +370,13 @@ public class PelangganView extends javax.swing.JFrame {
         deleteBtn.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 11)); // NOI18N
         deleteBtn.setText("Hapus");
 
-        jButton1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 11)); // NOI18N
-        jButton1.setText("Simpan");
+        saveBtn.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 11)); // NOI18N
+        saveBtn.setText("Simpan");
+        saveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveBtnActionPerformed(evt);
+            }
+        });
 
         cancelBtn.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 11)); // NOI18N
         cancelBtn.setText("Batal");
@@ -340,7 +386,7 @@ public class PelangganView extends javax.swing.JFrame {
 
         jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablePelanggan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -351,7 +397,7 @@ public class PelangganView extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(tablePelanggan);
 
         javax.swing.GroupLayout panel2Layout = new javax.swing.GroupLayout(panel2);
         panel2.setLayout(panel2Layout);
@@ -365,7 +411,7 @@ public class PelangganView extends javax.swing.JFrame {
                     .addComponent(dataPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panel2Layout.createSequentialGroup()
@@ -398,7 +444,7 @@ public class PelangganView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelBtn)
-                    .addComponent(jButton1))
+                    .addComponent(saveBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(tabelLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -451,6 +497,28 @@ public class PelangganView extends javax.swing.JFrame {
         mv.setVisible(true);
     }//GEN-LAST:event_mesinLabelMouseClicked
 
+    private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
+        // TODO add your handling code here:
+        setComponent(true);
+        action = "Tambah";
+        clearText();
+    }//GEN-LAST:event_addBtnActionPerformed
+
+    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+        // TODO add your handling code here:
+        if(action.equals("Tambah")){
+            Pelanggan p = new Pelanggan(namaInput.getText(), nomorInput.getText(), alamatInput.getText());
+            pControl.insertDataPelanggan(p);
+        }else{
+            
+        }
+        JOptionPane.showMessageDialog(null, "Berhasil Tambah Data Pelanggan!");
+        clearText();
+        showPelanggan();
+        setComponent(false);
+        setEditDeleteBtn(false);
+    }//GEN-LAST:event_saveBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -498,7 +566,6 @@ public class PelangganView extends javax.swing.JFrame {
     private javax.swing.JButton editBtn;
     private javax.swing.JTextField idInput;
     private javax.swing.JLabel idLabel;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -507,7 +574,6 @@ public class PelangganView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel laundryLabel;
     private javax.swing.JPanel mesinLabel;
     private javax.swing.JTextField namaInput;
@@ -518,9 +584,11 @@ public class PelangganView extends javax.swing.JFrame {
     private javax.swing.JPanel panel2;
     private javax.swing.JLabel pelangganLabel;
     private javax.swing.JPanel pelangganPanel;
+    private javax.swing.JButton saveBtn;
     private javax.swing.JButton searchBtn;
     private javax.swing.JTextField searchInput;
     private javax.swing.JLabel tabelLabel;
+    private javax.swing.JTable tablePelanggan;
     private javax.swing.JLabel transaksiLabel;
     private javax.swing.JPanel transaksiPanel;
     // End of variables declaration//GEN-END:variables
