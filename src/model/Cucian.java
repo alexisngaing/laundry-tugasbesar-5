@@ -28,11 +28,7 @@ public class Cucian {
         this.tglKeluar = tglKeluar;
     }
     
-    public Cucian(int id, boolean status, float berat, String tglMasuk, String tglKeluar, int idMesin, boolean statusMesin, float kapasitas, Date durasi, boolean statusMesinCuci, boolean statusDryer, float kapasitasMesinCuci, float kapasitasDryer) {
-        mc = new MesinCuci(idMesin, statusMesin, kapasitas, durasi, statusMesinCuci, kapasitasMesinCuci);
-        dr = new Dryer(idMesin, statusMesin, kapasitas, durasi, statusDryer, kapasitasDryer);
-        this.id = id;
-        this.status = status;
+    public Cucian(float berat, String tglMasuk, String tglKeluar) {
         this.berat = berat;
         this.tglMasuk = tglMasuk;
         this.tglKeluar = tglKeluar;
