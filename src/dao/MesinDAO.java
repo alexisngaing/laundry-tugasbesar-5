@@ -19,7 +19,7 @@ public class MesinDAO {
     public void insertMesin(Mesin mesin) {
         con = dbCon.makeConnection();
 
-        String sql = "INSERT INTO mesin(idMesin, statusMesin, kapasitas, durasi) "
+        String sql = "INSERT INTO mesin(id, status, kapasitas, durasi) "
                 + "VALUES (" + mesin.getIdMesin() + ", " + mesin.getStatusMesin() + ", "
                 + mesin.getKapasitas() + ", '" + mesin.getDurasi() + "')";
 
@@ -50,8 +50,8 @@ public class MesinDAO {
 
             if (rs != null) {
                 while (rs.next()) {
-                    int idMesin = rs.getInt("idMesin");
-                    boolean statusMesin = rs.getBoolean("statusMesin");
+                    int idMesin = rs.getInt("id");
+                    boolean statusMesin = rs.getBoolean("status");
                     float kapasitas = rs.getFloat("kapasitas");
                     String durasi = rs.getString("durasi");
 
@@ -70,7 +70,7 @@ public class MesinDAO {
     public Mesin searchMesin(int idMesin) {
         con = dbCon.makeConnection();
 
-        String sql = "SELECT * FROM mesin WHERE idMesin = " + idMesin;
+        String sql = "SELECT * FROM mesin WHERE id = " + idMesin;
         System.out.println("Searching Mesin...");
 
         Mesin mesin = null;
@@ -80,7 +80,7 @@ public class MesinDAO {
             ResultSet rs = statement.executeQuery(sql);
 
             if (rs != null && rs.next()) {
-                boolean statusMesin = rs.getBoolean("statusMesin");
+                boolean statusMesin = rs.getBoolean("status");
                 float kapasitas = rs.getFloat("kapasitas");
                 String durasi = rs.getString("durasi");
 
@@ -98,10 +98,10 @@ public class MesinDAO {
     public void updateMesin(Mesin mesin) {
         con = dbCon.makeConnection();
 
-        String sql = "UPDATE mesin SET statusMesin = " + mesin.getStatusMesin()
+        String sql = "UPDATE mesin SET status = " + mesin.getStatusMesin()
                 + ", kapasitas = " + mesin.getKapasitas()
                 + ", durasi = '" + mesin.getDurasi() + "'"
-                + " WHERE idMesin = " + mesin.getIdMesin();
+                + " WHERE id = " + mesin.getIdMesin();
 
         System.out.println("Updating Mesin...");
 
@@ -119,7 +119,7 @@ public class MesinDAO {
     public void deleteMesin(int idMesin) {
         con = dbCon.makeConnection();
 
-        String sql = "DELETE FROM mesin WHERE idMesin = " + idMesin;
+        String sql = "DELETE FROM mesin WHERE id = " + idMesin;
         System.out.println("Deleting Mesin...");
 
         try {

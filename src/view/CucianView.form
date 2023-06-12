@@ -351,10 +351,10 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="idPelangganLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="namaPelangganLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="idMesinLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="idComboBox" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
-                          <Component id="mesinComboBox" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                          <Component id="pelangganDropdown" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                          <Component id="mesinDropdown" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -379,13 +379,13 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="idPelangganLabel" min="-2" max="-2" attributes="0"/>
+                              <Component id="namaPelangganLabel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="idComboBox" min="-2" max="-2" attributes="0"/>
+                              <Component id="pelangganDropdown" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="idMesinLabel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="mesinComboBox" min="-2" max="-2" attributes="0"/>
+                              <Component id="mesinDropdown" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="beratInput" min="-2" max="-2" attributes="0"/>
@@ -405,9 +405,9 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="idPelangganLabel">
+            <Component class="javax.swing.JLabel" name="namaPelangganLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="ID Pelanggan"/>
+                <Property name="text" type="java.lang.String" value="Nama Pelanggan"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="idMesinLabel">
@@ -445,27 +445,30 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tglKeluarInputActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JComboBox" name="mesinComboBox">
+            <Component class="javax.swing.JComboBox" name="mesinDropdown">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="0"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mesinComboBoxActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mesinDropdownActionPerformed"/>
               </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Mesin&gt;"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JComboBox" name="idComboBox">
+            <Component class="javax.swing.JComboBox" name="pelangganDropdown">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="0"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pelangganDropdownActionPerformed"/>
+              </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Pelanggan&gt;"/>
               </AuxValues>
             </Component>
           </SubComponents>

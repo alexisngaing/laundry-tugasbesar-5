@@ -3,14 +3,23 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/media/yamacat/DATA/Kuliah/Kuliah%204/Pemrograman%20Berorientasi%20Objek/Teori/Tugas%20Besar/laundry-tugasbesar-5/src/model/Cucian.java</file>
-            <file>file:/media/yamacat/DATA/Kuliah/Kuliah%204/Pemrograman%20Berorientasi%20Objek/Teori/Tugas%20Besar/laundry-tugasbesar-5/src/dao/CucianDAO.java</file>
-            <file>file:/media/yamacat/DATA/Kuliah/Kuliah%204/Pemrograman%20Berorientasi%20Objek/Teori/Tugas%20Besar/laundry-tugasbesar-5/src/model/Mesin.java</file>
-            <file>file:/media/yamacat/DATA/Kuliah/Kuliah%204/Pemrograman%20Berorientasi%20Objek/Teori/Tugas%20Besar/laundry-tugasbesar-5/src/model/Dryer.java</file>
-            <file>file:/media/yamacat/DATA/Kuliah/Kuliah%204/Pemrograman%20Berorientasi%20Objek/Teori/Tugas%20Besar/laundry-tugasbesar-5/src/table/TableCucian.java</file>
-            <file>file:/media/yamacat/DATA/Kuliah/Kuliah%204/Pemrograman%20Berorientasi%20Objek/Teori/Tugas%20Besar/laundry-tugasbesar-5/src/table/TablePelanggan.java</file>
-            <file>file:/media/yamacat/DATA/Kuliah/Kuliah%204/Pemrograman%20Berorientasi%20Objek/Teori/Tugas%20Besar/laundry-tugasbesar-5/src/table/TableTransaksi.java</file>
-            <file>file:/media/yamacat/DATA/Kuliah/Kuliah%204/Pemrograman%20Berorientasi%20Objek/Teori/Tugas%20Besar/laundry-tugasbesar-5/src/model/MesinCuci.java</file>
+            <file>file:/D:/Kuliah/Kuliah%204/Pemrograman%20Berorientasi%20Objek/Teori/laundry-tugasbesar-5/src/dao/PelangganDAO.java</file>
+            <file>file:/D:/Kuliah/Kuliah%204/Pemrograman%20Berorientasi%20Objek/Teori/laundry-tugasbesar-5/src/control/MesinControl.java</file>
+            <file>file:/D:/Kuliah/Kuliah%204/Pemrograman%20Berorientasi%20Objek/Teori/laundry-tugasbesar-5/src/model/MesinCuci.java</file>
+            <file>file:/D:/Kuliah/Kuliah%204/Pemrograman%20Berorientasi%20Objek/Teori/laundry-tugasbesar-5/src/model/Dryer.java</file>
+            <file>file:/D:/Kuliah/Kuliah%204/Pemrograman%20Berorientasi%20Objek/Teori/laundry-tugasbesar-5/src/view/CucianView.java</file>
+            <file>file:/D:/Kuliah/Kuliah%204/Pemrograman%20Berorientasi%20Objek/Teori/laundry-tugasbesar-5/src/dao/TransaksiDAO.java</file>
+            <file>file:/D:/Kuliah/Kuliah%204/Pemrograman%20Berorientasi%20Objek/Teori/laundry-tugasbesar-5/src/dao/CucianDAO.java</file>
+            <file>file:/D:/Kuliah/Kuliah%204/Pemrograman%20Berorientasi%20Objek/Teori/laundry-tugasbesar-5/src/view/MesinView.java</file>
+            <file>file:/D:/Kuliah/Kuliah%204/Pemrograman%20Berorientasi%20Objek/Teori/laundry-tugasbesar-5/src/dao/MesinDAO.java</file>
+            <file>file:/D:/Kuliah/Kuliah%204/Pemrograman%20Berorientasi%20Objek/Teori/laundry-tugasbesar-5/src/model/Mesin.java</file>
+            <file>file:/D:/Kuliah/Kuliah%204/Pemrograman%20Berorientasi%20Objek/Teori/laundry-tugasbesar-5/src/table/TableCucian.java</file>
+            <file>file:/D:/Kuliah/Kuliah%204/Pemrograman%20Berorientasi%20Objek/Teori/laundry-tugasbesar-5/src/table/TableTransaksi.java</file>
+            <file>file:/D:/Kuliah/Kuliah%204/Pemrograman%20Berorientasi%20Objek/Teori/laundry-tugasbesar-5/src/control/CucianControl.java</file>
+            <file>file:/D:/Kuliah/Kuliah%204/Pemrograman%20Berorientasi%20Objek/Teori/laundry-tugasbesar-5/src/model/Cucian.java</file>
+            <file>file:/D:/Kuliah/Kuliah%204/Pemrograman%20Berorientasi%20Objek/Teori/laundry-tugasbesar-5/src/view/PelangganView.java</file>
+            <file>file:/D:/Kuliah/Kuliah%204/Pemrograman%20Berorientasi%20Objek/Teori/laundry-tugasbesar-5/src/view/TransaksiView.java</file>
+            <file>file:/D:/Kuliah/Kuliah%204/Pemrograman%20Berorientasi%20Objek/Teori/laundry-tugasbesar-5/src/table/TablePelanggan.java</file>
         </group>
     </open-files>
 </project-private>

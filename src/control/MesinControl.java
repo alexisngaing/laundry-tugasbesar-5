@@ -19,6 +19,11 @@ public class MesinControl {
         }
         return mesinString;
     }
+    
+    public List<Mesin> listMesin() {
+        List<Mesin> dataMesin = mesinDAO.showMesin();
+        return dataMesin;
+    }
 
     public Mesin searchMesin(int idMesin) {
         Mesin mesin = mesinDAO.searchMesin(idMesin);

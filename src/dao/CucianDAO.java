@@ -44,9 +44,8 @@ public class CucianDAO {
 //                + "OR c.statusDry LIKE '%" + query + "%'"
                 + "OR c.berat LIKE '%" + query + "%'"
                 + "OR c.tglMasuk LIKE '%" + query + "%'"
-                + "OR m.idMesin LIKE '%" + query + "%"
-                + "OR p.nama LIKE '%" + query + "%')"
-                + "ORDER BY c.id";
+                + "OR m.id LIKE '%" + query + "%'"
+                + "OR p.nama LIKE '%" + query + "%')";
         
         System.out.println("Mengambil data Cucian...");
 
@@ -152,7 +151,7 @@ public class CucianDAO {
                 + "tglMasuk = '" + c.getTglMasuk() + "', "
                 + "tglKeluar = '" + c.getTglKeluar() + "', "
                 + "idPelanggan = '" + c.getPelanggan().getIdPelanggan() + "', "
-                + "idMesin = '" + c.getMesin().getIdMesin() + "'"
+                + "id = '" + c.getMesin().getIdMesin() + "'"
                 + "WHERE id = '" + c.getId()+ "'";
         System.out.println("Update data Cucian...");
         
