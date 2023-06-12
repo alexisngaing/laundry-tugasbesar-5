@@ -8,16 +8,18 @@ import java.util.Date;
 
 public class Cucian {
     private int id;
-    private boolean status;
+    private boolean statusCuci;
+    private boolean statusDry;
     private float berat;
     private String tglMasuk;
     private String tglKeluar;
     private Mesin mesin;
     private Pelanggan pelanggan;
 
-    public Cucian(int id, boolean status, float berat, String tglMasuk, String tglKeluar, Mesin mesin, Pelanggan pelanggan) {
+    public Cucian(int id, boolean statusCuci, boolean statusDry, float berat, String tglMasuk, String tglKeluar, Mesin mesin, Pelanggan pelanggan) {
         this.id = id;
-        this.status = status;
+        this.statusCuci = statusCuci;
+        this.statusDry = statusDry;
         this.berat = berat;
         this.tglMasuk = tglMasuk;
         this.tglKeluar = tglKeluar;
@@ -35,8 +37,12 @@ public class Cucian {
         return id;
     }
 
-    public boolean isStatus() {
-        return status;
+    public boolean isStatusCuci() {
+        return statusCuci;
+    }
+
+    public boolean isStatusDry() {
+        return statusDry;
     }
 
     public float getBerat() {
@@ -63,8 +69,12 @@ public class Cucian {
         this.id = id;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setStatusCuci(boolean statusCuci) {
+        this.statusCuci = statusCuci;
+    }
+
+    public void setStatusDry(boolean statusDry) {
+        this.statusDry = statusDry;
     }
 
     public void setBerat(float berat) {
@@ -86,7 +96,4 @@ public class Cucian {
     public void setPelanggan(Pelanggan pelanggan) {
         this.pelanggan = pelanggan;
     }
-
-
-
 }
