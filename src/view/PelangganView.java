@@ -25,10 +25,10 @@ public class PelangganView extends javax.swing.JFrame {
         setEditDeleteBtn(false);
         pControl = new PelangganControl();
         showPelanggan();
+        idInput.setEnabled(false);
     }
     
     public void setComponent(boolean value){
-        idInput.setEnabled(value);
         namaInput.setEnabled(value);
         nomorInput.setEnabled(value);
         alamatInput.setEnabled(value);
@@ -255,6 +255,11 @@ public class PelangganView extends javax.swing.JFrame {
 
         searchBtn.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 11)); // NOI18N
         searchBtn.setText("Cari");
+        searchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -366,9 +371,19 @@ public class PelangganView extends javax.swing.JFrame {
 
         editBtn.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 11)); // NOI18N
         editBtn.setText("Edit");
+        editBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editBtnActionPerformed(evt);
+            }
+        });
 
         deleteBtn.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 11)); // NOI18N
         deleteBtn.setText("Hapus");
+        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBtnActionPerformed(evt);
+            }
+        });
 
         saveBtn.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 11)); // NOI18N
         saveBtn.setText("Simpan");
@@ -380,6 +395,11 @@ public class PelangganView extends javax.swing.JFrame {
 
         cancelBtn.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 11)); // NOI18N
         cancelBtn.setText("Batal");
+        cancelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelBtnActionPerformed(evt);
+            }
+        });
 
         tabelLabel.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         tabelLabel.setText("Tabel Pelanggan");
@@ -397,6 +417,11 @@ public class PelangganView extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tablePelanggan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablePelangganMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tablePelanggan);
 
         javax.swing.GroupLayout panel2Layout = new javax.swing.GroupLayout(panel2);
@@ -502,6 +527,7 @@ public class PelangganView extends javax.swing.JFrame {
         setComponent(true);
         action = "Tambah";
         clearText();
+        idInput.setText("");
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
@@ -510,7 +536,8 @@ public class PelangganView extends javax.swing.JFrame {
             Pelanggan p = new Pelanggan(namaInput.getText(), nomorInput.getText(), alamatInput.getText());
             pControl.insertDataPelanggan(p);
         }else{
-            
+            Pelanggan p = new Pelanggan(selectedId, namaInput.getText(), nomorInput.getText(), alamatInput.getText());
+            pControl.updatePelanggan(p, selectedId);
         }
         JOptionPane.showMessageDialog(null, "Berhasil Tambah Data Pelanggan!");
         clearText();
@@ -518,6 +545,74 @@ public class PelangganView extends javax.swing.JFrame {
         setComponent(false);
         setEditDeleteBtn(false);
     }//GEN-LAST:event_saveBtnActionPerformed
+
+    private void tablePelangganMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablePelangganMouseClicked
+        // TODO add your handling code here:
+        setComponent(false);
+        setEditDeleteBtn(true);
+        int clickedRow = tablePelanggan.getSelectedRow();
+        TableModel tableModel = tablePelanggan.getModel();
+        
+        selectedId = Integer.parseInt(tableModel.getValueAt(clickedRow, 0).toString());
+        
+        idInput.setText(tableModel.getValueAt(clickedRow, 0).toString());
+        namaInput.setText(tableModel.getValueAt(clickedRow, 1).toString());
+        nomorInput.setText(tableModel.getValueAt(clickedRow, 2).toString());
+        alamatInput.setText(tableModel.getValueAt(clickedRow, 3).toString());
+    }//GEN-LAST:event_tablePelangganMouseClicked
+
+    private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
+        // TODO add your handling code here:
+        setComponent(true);
+        action = "Ubah";
+    }//GEN-LAST:event_editBtnActionPerformed
+
+    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
+        // TODO add your handling code here:
+        setComponent(false);
+        setEditDeleteBtn(false);
+        idInput.setText("");
+        clearText();
+    }//GEN-LAST:event_cancelBtnActionPerformed
+
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        // TODO add your handling code here:
+        int getAnswer = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin ingin menghapus data?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+        switch(getAnswer){
+            case 0:
+                try{
+                    pControl.deletePelanggan(selectedId);
+                    clearText();
+                    idInput.setText("");
+                    showPelanggan();
+                    setComponent(false);
+                    setEditDeleteBtn(false);
+                }catch(Exception e){
+                    System.out.println("Error: " + e.getMessage());
+                }
+                break;
+            case 1:
+                break;
+        }
+    }//GEN-LAST:event_deleteBtnActionPerformed
+
+    private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
+        // TODO add your handling code here:
+        setComponent(false);
+        try{
+            TablePelanggan p = pControl.searchDataPelanggan(searchInput.getText());
+            if(p.getRowCount() == 0){
+                clearText();
+                setEditDeleteBtn(false);
+                JOptionPane.showConfirmDialog(null, "Data tidak ditemukan", "Konfirmasi", JOptionPane.DEFAULT_OPTION);
+            }else{
+                tablePelanggan.setModel(p);
+            }
+            clearText();
+        }catch(Exception e){
+            System.out.println("Error: " + e.getMessage());
+        }
+    }//GEN-LAST:event_searchBtnActionPerformed
 
     /**
      * @param args the command line arguments
