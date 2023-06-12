@@ -3,6 +3,7 @@ package control;
 import model.Pelanggan;
 import dao.PelangganDAO;
 import java.util.List;
+import table.TablePelanggan;
 
 public class PelangganControl {
     private PelangganDAO pDao = new PelangganDAO();
@@ -18,6 +19,13 @@ public class PelangganControl {
             pelangganString = pelangganString + dataPelanggan.get(i).showDataPelanggan() + "\n";
         }
         return pelangganString;
+    }
+    
+    public TablePelanggan showPelanggan(){
+        List<Pelanggan> dataPelanggan = pDao.showPelanggan();
+        TablePelanggan tablePelanggan = new TablePelanggan(dataPelanggan);
+        
+        return tablePelanggan;
     }
     
     public Pelanggan searchPelanggan(String nama){

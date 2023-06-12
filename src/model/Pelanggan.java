@@ -17,6 +17,12 @@ public class Pelanggan {
         this.alamat = alamat;
     }
 
+    public Pelanggan(String nama, String noTelp, String alamat) {
+        this.nama = nama;
+        this.noTelp = noTelp;
+        this.alamat = alamat;
+    }
+
     public int getIdPelanggan() {
         return idPelanggan;
     }
