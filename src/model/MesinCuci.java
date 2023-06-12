@@ -7,14 +7,14 @@ public class MesinCuci extends Mesin {
     private boolean statusMesinCuci;
     private float kapasitasMesinCuci;
 
-    public MesinCuci(int idMesin, boolean status, float kapasitas, Date durasi, /* int idMesin,*/ boolean statusMesinCuci, float kapasitasMesinCuci) {
+    public MesinCuci(int idMesin, boolean status, float kapasitas, String durasi, /* int idMesin,*/ boolean statusMesinCuci, float kapasitasMesinCuci) {
         super(idMesin, status, kapasitas, durasi);
 //        this.idMesin = idMesinCuci;
         this.statusMesinCuci = statusMesinCuci;
         this.kapasitasMesinCuci = kapasitasMesinCuci;
     }
     
-    public MesinCuci(int idMesin, boolean status, float kapasitas, Date durasi) {
+    public MesinCuci(int idMesin, boolean status, float kapasitas, String durasi) {
         super(idMesin, status, kapasitas, durasi);
     }
 
@@ -42,12 +42,12 @@ public class MesinCuci extends Mesin {
         this.kapasitasMesinCuci = kapasitasMesinCuci;
     }
 
-    @Override
-    public boolean cekStatusMesin() {
-        if (this.statusMesinCuci == true) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+//    @Override
+//    public boolean cekStatusMesin() {
+//        if (this.statusMesinCuci == true) {
+//            return true;
+//        } else {
+//            return false;
+//        }
+//    }
 }

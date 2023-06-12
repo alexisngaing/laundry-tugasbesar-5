@@ -3,22 +3,22 @@ package model;
 import java.util.Date;
 //import java.util.ArrayList;
 
-public abstract class Mesin {
+public /* abstract */ class Mesin {
     protected int idMesin;
     protected boolean statusMesin;
     protected float kapasitas;
-    protected Date durasi;
+    protected String durasi;
 //    protected ArrayList<MesinCuci> mesincuci;
 //    protected ArrayList<Dryer> dryer;
 
-    public Mesin(int idMesin, boolean statusMesin, float kapasitas, Date durasi) {
+    public Mesin(int idMesin, boolean statusMesin, float kapasitas, String durasi) {
         this.idMesin = idMesin;
         this.statusMesin = statusMesin;
         this.kapasitas = kapasitas;
         this.durasi = durasi;
     }
 
-    public Mesin(boolean statusMesin, float kapasitas, Date durasi) {
+    public Mesin(boolean statusMesin, float kapasitas, String durasi) {
         this.statusMesin = statusMesin;
         this.kapasitas = kapasitas;
         this.durasi = durasi;
@@ -36,7 +36,7 @@ public abstract class Mesin {
         return kapasitas;
     }
 
-    public Date getDurasi() {
+    public String getDurasi() {
         return durasi;
     }
 
@@ -52,9 +52,9 @@ public abstract class Mesin {
         this.kapasitas = kapasitas;
     }
 
-    public void setDurasi(Date durasi) {
+    public void setDurasi(String durasi) {
         this.durasi = durasi;
     }
 
-    public abstract boolean cekStatusMesin();
+//    public abstract boolean cekStatusMesin();
 }

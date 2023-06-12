@@ -7,14 +7,14 @@ public class Dryer extends Mesin {
     private boolean statusDryer;
     private float kapasitasDryer;
 
-    public Dryer(int id, boolean status, float kapasitas, Date durasi, /*int idDryer,*/ boolean statusDryer, float kapasitasDryer) {
+    public Dryer(int id, boolean status, float kapasitas, String durasi, /*int idDryer,*/ boolean statusDryer, float kapasitasDryer) {
         super(id, status, kapasitas, durasi);
 //        this.idDryer = idDryer;
         this.statusDryer = statusDryer;
         this.kapasitasDryer = kapasitasDryer;
     }
     
-    public Dryer(int idMesin, boolean status, float kapasitas, Date durasi) {
+    public Dryer(int idMesin, boolean status, float kapasitas, String durasi) {
         super(idMesin, status, kapasitas, durasi);
     }
 
@@ -42,12 +42,12 @@ public class Dryer extends Mesin {
         this.kapasitasDryer = kapasitasDryer;
     }
 
-    @Override
-    public boolean cekStatusMesin() {
-        if (this.statusDryer == true) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+//    @Override
+//    public boolean cekStatusMesin() {
+//        if (this.statusDryer == true) {
+//            return true;
+//        } else {
+//            return false;
+//        }
+//    }
 }
