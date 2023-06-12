@@ -62,4 +62,9 @@ public class Pelanggan {
                 + this.noTelp + " | "
                 + this.alamat;
     }
+    
+    @Override
+    public String toString(){
+        return nama;
+    }
 }
