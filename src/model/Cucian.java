@@ -27,10 +27,12 @@ public class Cucian {
         this.pelanggan = pelanggan;
     }
     
-    public Cucian(float berat, String tglMasuk, String tglKeluar) {
+    public Cucian(float berat, String tglMasuk, String tglKeluar, Mesin mesin, Pelanggan pelanggan) {
         this.berat = berat;
         this.tglMasuk = tglMasuk;
         this.tglKeluar = tglKeluar;
+        this.mesin = mesin;
+        this.pelanggan = pelanggan;
     }
 
     public int getId() {
