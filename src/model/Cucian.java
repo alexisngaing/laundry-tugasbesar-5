@@ -12,17 +12,17 @@ public class Cucian {
     private float berat;
     private String tglMasuk;
     private String tglKeluar;
-    private Mesin m;
-    private Pelanggan p;
+    private Mesin mesin;
+    private Pelanggan pelanggan;
 
-    public Cucian(int id, boolean status, float berat, String tglMasuk, String tglKeluar, Mesin m, Pelanggan p) {
+    public Cucian(int id, boolean status, float berat, String tglMasuk, String tglKeluar, Mesin mesin, Pelanggan pelanggan) {
         this.id = id;
         this.status = status;
         this.berat = berat;
         this.tglMasuk = tglMasuk;
         this.tglKeluar = tglKeluar;
-        this.m = m;
-        this.p = p;
+        this.mesin = mesin;
+        this.pelanggan = pelanggan;
     }
     
     public Cucian(float berat, String tglMasuk, String tglKeluar) {
@@ -51,12 +51,12 @@ public class Cucian {
         return tglKeluar;
     }
 
-    public Mesin getM() {
-        return m;
+    public Mesin getMesin() {
+        return mesin;
     }
 
-    public Pelanggan getP() {
-        return p;
+    public Pelanggan getPelanggan() {
+        return pelanggan;
     }
 
     public void setId(int id) {
@@ -79,12 +79,14 @@ public class Cucian {
         this.tglKeluar = tglKeluar;
     }
 
-    public void setM(Mesin m) {
-        this.m = m;
+    public void setMesin(Mesin mesin) {
+        this.mesin = mesin;
     }
 
-    public void setP(Pelanggan p) {
-        this.p = p;
+    public void setPelanggan(Pelanggan pelanggan) {
+        this.pelanggan = pelanggan;
     }
+
+
 
 }
