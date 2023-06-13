@@ -97,9 +97,7 @@ public class CucianView extends javax.swing.JFrame {
             mesinDropdown.addItem(listMesin.get(i));
         }
     }
-    
-    
-    
+
     public void inputKosongException() throws inputKosongException {
         if (pelangganDropdown.getSelectedIndex() == -1 
                 || mesinDropdown.getSelectedIndex() == -1 
