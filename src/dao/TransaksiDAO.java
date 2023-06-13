@@ -18,8 +18,8 @@ public class TransaksiDAO {
     public void insertTransaksi(Transaksi t){
         con = dbCon.makeConnection();
         
-        String sql = "INSERT INTO transaksi(idPelanggan, idCucian, totalBiaya) VALUES ("
-                + t.getPelanggan().getIdPelanggan() + "," + t.getCucian().getId() +", " + t.getTotalBiaya() + ")";
+        String sql = "INSERT INTO transaksi(totalBiaya, idPelanggan, idCucian) VALUES ('"
+                + t.getTotalBiaya() + "', '" + t.getPelanggan().getIdPelanggan() + "', '" + t.getCucian().getId()+ "')";
         
         System.out.println("Adding Transaksi...");
         
@@ -37,13 +37,11 @@ public class TransaksiDAO {
     public List<Transaksi> showTransaksi(String query) {
         con = dbCon.makeConnection();
         
-        String sql = "SELECT t.*, c.*, p.*, m.* FROM transaksi as t JOIN cucian as c ON t.idCucian = c.id JOIN pelanggan as p ON c.idPelanggan = p.id JOIN mesin as m ON c.idMesin = m. id WHERE (t.idTransaksi LIKE "
-                + "'%" + query + "%'"
-                + "OR p.nama LIKE '%" + query + "%'"
-                + "OR c.tglMasuk LIKE '%" + query + "%'"
-                + "OR c.berat LIKE '%" + query + "%'"
-                + "OR t.totalBiaya LIKE '%" + query + "%')"
-                + "ORDER BY t.idTransaksi";
+        String sql = "SELECT * FROM transaksi t " +
+                    "JOIN cucian c ON t.idCucian = c.id " +
+                    "JOIN mesin m ON c.idMesin = m.id " +
+                    "JOIN pelanggan p ON c.idPelanggan = p.id " +
+                    "WHERE p.nama LIKE '%" + query + "%'";
         
         System.out.println("Fetching Transaksi data...");
 
