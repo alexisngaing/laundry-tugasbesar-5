@@ -57,8 +57,8 @@ public class CucianView extends javax.swing.JFrame {
         pelangganDropdown.setEnabled(value);
         mesinDropdown.setEnabled(value);
         beratInput.setEnabled(value);
-        tglMasukInput.setEnabled(value);
-        tglKeluarInput.setEnabled(value);
+        tglMasukInput.setEnabled(false);
+        tglKeluarInput.setEnabled(false);
         
         saveBtn.setEnabled(value);
         cancelBtn.setEnabled(value);
@@ -319,7 +319,6 @@ public class CucianView extends javax.swing.JFrame {
 
         tglMasukLabel.setText("Tanggal Masuk");
 
-        tglMasukInput.setEditable(false);
         tglMasukInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tglMasukInputActionPerformed(evt);
@@ -328,7 +327,6 @@ public class CucianView extends javax.swing.JFrame {
 
         tglKeluarLabel.setText("Tanggal Keluar");
 
-        tglKeluarInput.setEditable(false);
         tglKeluarInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tglKeluarInputActionPerformed(evt);
@@ -596,7 +594,7 @@ public class CucianView extends javax.swing.JFrame {
             Cucian c = new Cucian(Float.parseFloat(beratInput.getText()), today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")), tomorrow.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")), selectedMesin, selectedPelanggan);
             cControl.insertDataCucian(c);
         } else if(action.equals("Ubah")) {
-            Cucian c = new Cucian(Float.parseFloat(beratInput.getText()), tglMasukInput.getText(), tglKeluarInput.getText(), selectedMesin, selectedPelanggan);
+            Cucian c = new Cucian(selectedId, Float.parseFloat(beratInput.getText()), tglMasukInput.getText(), tglKeluarInput.getText(), selectedMesin, selectedPelanggan);
             cControl.updateCucian(c);
         }
         JOptionPane.showMessageDialog(null, "Berhasil Tambah Data Cucian!");
@@ -648,7 +646,8 @@ public class CucianView extends javax.swing.JFrame {
     }//GEN-LAST:event_mesinDropdownActionPerformed
 
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
-        setComponent (true); 
+        setComponent (true);
+        tglKeluarInput.setEnabled(true);
         action = "Ubah";
     }//GEN-LAST:event_editBtnActionPerformed
 
@@ -706,6 +705,7 @@ public class CucianView extends javax.swing.JFrame {
             }
         }
         pelangganDropdown.setSelectedIndex(indexPelanggan);
+        System.out.println("SelectedId: " +selectedId);
     }//GEN-LAST:event_tabelCucianMouseClicked
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
