@@ -145,14 +145,14 @@ public class CucianDAO {
         con = dbCon.makeConnection();
         
         String sql = "UPDATE cucian SET "
-                + "statusCuci = '" + c.isStatusCuci() + "', "
-                + "statusDry = '" + c.isStatusDry() + "', "
+//                + "statusCuci = '" + c.isStatusCuci() + "', "
+//                + "statusDry = '" + c.isStatusDry() + "', "
                 + "berat = '" + c.getBerat() + "', "
                 + "tglMasuk = '" + c.getTglMasuk() + "', "
                 + "tglKeluar = '" + c.getTglKeluar() + "', "
-                + "idPelanggan = '" + c.getPelanggan().getIdPelanggan() + "', "
-                + "id = '" + c.getMesin().getIdMesin() + "'"
-                + "WHERE id = '" + c.getId()+ "'";
+                + "idPelanggan = " + c.getPelanggan().getIdPelanggan() + ", "
+                + "idMesin = " + c.getMesin().getIdMesin() + " "
+                + "WHERE id = " + c.getId();
         System.out.println("Update data Cucian...");
         
         try {
