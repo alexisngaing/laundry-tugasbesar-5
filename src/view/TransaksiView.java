@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package view;
 
 /**
@@ -11,36 +7,74 @@ package view;
 
 import javax.swing.JOptionPane;
 import control.TransaksiControl;
+import control.CucianControl;
+import control.MesinControl;
+import control.PelangganControl;
+import exception.inputKosongException;
 import java.util.List;
 import javax.swing.table.TableModel;
 import model.Transaksi;
+import model.Cucian;
+import model.Mesin;
+import model.Pelanggan;
 import table.TableTransaksi;
 
 public class TransaksiView extends javax.swing.JFrame {
 
     private TransaksiControl tControl;
-    List<Transaksi> listT;
+    private CucianControl cControl;
+    private MesinControl mControl;
+    private PelangganControl pControl;
+    
+    List<Transaksi> listTransaksi;
+    List<Cucian> listCucian;
+    List<Mesin> listMesin;
+    List<Pelanggan> listPelanggan;
+    
     int selectedId = 0;
     String action = null;
     
     public TransaksiView() {
         initComponents();
         setComponent(false);
+        bayarInput.setEnabled(false);
         tControl = new TransaksiControl();
+        cControl = new CucianControl();
+        mControl = new MesinControl();
+        pControl = new PelangganControl();
         showTransaksi();
     }
     
-    public void setComponent(boolean value){
+    public void setComponent(boolean value) {
         totalBiayaField.setEnabled(value);
         bayarInput.setEnabled(value);
         kembalianField.setEnabled(value);
+        
         bayarBtn.setEnabled(value);
         cancelBtn.setEnabled(value);
     }
     
-    public void showTransaksi(){
-        tableTransaksi.setModel(tControl.showDataTransaksi());
+    public void clearText() {
+        bayarInput.setText("");
+        totalBiayaField.setText("");
+        kembalianField.setText("");
     }
+    
+//    public void setEditDeleteBtn(boolean value) {
+//        
+//    }
+    
+    public void showTransaksi() {
+//        tableTransaksi.setModel(tControl.showDataTransaksi());
+    }
+    
+//    public void inputKosongException() throws inputKosongException {
+//        if (pelangganDropdown.getSelectedIndex() == -1 
+//                || mesinDropdown.getSelectedIndex() == -1 
+//                || beratInput.getText().isEmpty()) {
+//            throw new inputKosongException();
+//        }
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -282,6 +316,11 @@ public class TransaksiView extends javax.swing.JFrame {
 
         searchBtn.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 11)); // NOI18N
         searchBtn.setText("Cari");
+        searchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBtnActionPerformed(evt);
+            }
+        });
 
         pembayaranLabel.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         pembayaranLabel.setText("Pembayaran");
@@ -466,6 +505,25 @@ public class TransaksiView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tableTransaksiMouseClicked
 
+    private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
+//        setEditDeleteBtn(false);
+        setComponent(false);
+
+        try {
+            TableTransaksi transaksi = tControl.showDataTransaksi(searchInput.getText());
+            if (transaksi.getRowCount() == 0){
+                clearText();
+//                setEditDeleteBtn(false);
+                JOptionPane.showConfirmDialog(rootPane, "Data tidak ditemukan", "Konfirmasi", JOptionPane.DEFAULT_OPTION);
+            } else {
+                tableTransaksi.setModel(transaksi);
+            }
+        } catch(Exception e) {
+            System.out.println("Error : " + e.getMessage());
+        }
+    }//GEN-LAST:event_searchBtnActionPerformed
+
+    
     /**
      * @param args the command line arguments
      */
