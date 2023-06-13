@@ -11,6 +11,7 @@ import control.CucianControl;
 import control.MesinControl;
 import control.PelangganControl;
 import exception.inputKosongException;
+import exception.uangKurangException;
 import java.util.List;
 import javax.swing.table.TableModel;
 import model.Transaksi;
@@ -65,7 +66,7 @@ public class TransaksiView extends javax.swing.JFrame {
 //    }
     
     public void showTransaksi() {
-//        tableTransaksi.setModel(tControl.showDataTransaksi());
+        tableTransaksi.setModel(tControl.showDataTransaksi(""));
     }
     
 //    public void inputKosongException() throws inputKosongException {
@@ -75,6 +76,12 @@ public class TransaksiView extends javax.swing.JFrame {
 //            throw new inputKosongException();
 //        }
 //    }
+    
+    public void uangKurangException() throws uangKurangException {
+        if (Float.parseFloat(bayarInput.getText()) < Float.parseFloat(totalBiayaField.getText())) {
+            throw new uangKurangException();
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
