@@ -34,6 +34,15 @@ public class Cucian {
         this.mesin = mesin;
         this.pelanggan = pelanggan;
     }
+    
+    public Cucian(int id, float berat, String tglMasuk, String tglKeluar, Mesin mesin, Pelanggan pelanggan) {
+        this.id = id;
+        this.berat = berat;
+        this.tglMasuk = tglMasuk;
+        this.tglKeluar = tglKeluar;
+        this.mesin = mesin;
+        this.pelanggan = pelanggan;
+    }
 
     public int getId() {
         return id;
