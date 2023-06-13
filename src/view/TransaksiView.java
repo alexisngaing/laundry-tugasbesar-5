@@ -554,13 +554,17 @@ public class TransaksiView extends javax.swing.JFrame {
         }else{
             kembalian = Float.parseFloat(totalBiayaField.getText()) - Float.parseFloat(bayarInput.getText());
             JOptionPane.showMessageDialog(null, "Pembayaran Berhasil!");
-        } 
+            selectedId = 0;
+            totalBiayaField.setText("Rp.0");
+            setComponent(false);
+        }
     }//GEN-LAST:event_bayarBtnActionPerformed
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         // TODO add your handling code here:
         selectedId = 0;
         totalBiayaField.setText("Rp.0");
+        bayarInput.setText("");
         setComponent(false);
     }//GEN-LAST:event_cancelBtnActionPerformed
 
