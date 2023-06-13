@@ -432,10 +432,8 @@
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="nomorLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="nomorInput" alignment="0" pref="190" max="32767" attributes="0"/>
-                          <Component id="idLabel" min="-2" max="-2" attributes="0"/>
                           <Component id="namaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="namaInput" alignment="0" max="32767" attributes="0"/>
-                          <Component id="idInput" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -453,44 +451,26 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="namaLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="alamatLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="alamatLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
+                              <Component id="namaLabel" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="namaInput" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="idLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="idInput" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="nomorLabel" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="nomorInput" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="nomorInput" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="20" max="32767" attributes="0"/>
+                      <EmptySpace pref="51" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="idLabel">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="ID Pelanggan"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="idInput">
-              <Properties>
-                <Property name="editable" type="boolean" value="false"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="idInputActionPerformed"/>
-              </Events>
-            </Component>
             <Component class="javax.swing.JLabel" name="namaLabel">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Nama Pelanggan"/>

@@ -26,7 +26,6 @@ public class PelangganView extends javax.swing.JFrame {
         setEditDeleteBtn(false);
         pControl = new PelangganControl();
         showPelanggan();
-        idInput.setEnabled(false);
     }
     
     public void setComponent(boolean value){
@@ -88,8 +87,6 @@ public class PelangganView extends javax.swing.JFrame {
         searchInput = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         dataPanel = new javax.swing.JPanel();
-        idLabel = new javax.swing.JLabel();
-        idInput = new javax.swing.JTextField();
         namaLabel = new javax.swing.JLabel();
         namaInput = new javax.swing.JTextField();
         nomorLabel = new javax.swing.JLabel();
@@ -304,15 +301,6 @@ public class PelangganView extends javax.swing.JFrame {
 
         dataPanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        idLabel.setText("ID Pelanggan");
-
-        idInput.setEditable(false);
-        idInput.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                idInputActionPerformed(evt);
-            }
-        });
-
         namaLabel.setText("Nama Pelanggan");
 
         nomorLabel.setText("Nomor Telepon");
@@ -333,10 +321,8 @@ public class PelangganView extends javax.swing.JFrame {
                 .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(nomorLabel)
                     .addComponent(nomorInput, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
-                    .addComponent(idLabel)
                     .addComponent(namaLabel)
-                    .addComponent(namaInput)
-                    .addComponent(idInput))
+                    .addComponent(namaInput))
                 .addGap(49, 49, 49)
                 .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(dataPanelLayout.createSequentialGroup()
@@ -349,23 +335,19 @@ public class PelangganView extends javax.swing.JFrame {
             dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dataPanelLayout.createSequentialGroup()
                 .addGap(7, 7, 7)
-                .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(namaLabel)
-                    .addComponent(alamatLabel))
+                .addComponent(alamatLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(dataPanelLayout.createSequentialGroup()
+                        .addComponent(namaLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(namaInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(idLabel)
+                        .addComponent(nomorLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(idInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(nomorLabel))
+                        .addComponent(nomorInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nomorInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         addBtn.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 11)); // NOI18N
@@ -505,10 +487,6 @@ public class PelangganView extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void idInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idInputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_idInputActionPerformed
-
     private void cucianPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cucianPanelMouseClicked
         // TODO add your handling code here:
         CucianView cv = new CucianView();
@@ -535,7 +513,6 @@ public class PelangganView extends javax.swing.JFrame {
         setComponent(true);
         action = "Tambah";
         clearText();
-        idInput.setText("");
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
@@ -568,8 +545,6 @@ public class PelangganView extends javax.swing.JFrame {
         TableModel tableModel = tablePelanggan.getModel();
         
         selectedId = Integer.parseInt(tableModel.getValueAt(clickedRow, 0).toString());
-        
-        idInput.setText(tableModel.getValueAt(clickedRow, 0).toString());
         namaInput.setText(tableModel.getValueAt(clickedRow, 1).toString());
         nomorInput.setText(tableModel.getValueAt(clickedRow, 2).toString());
         alamatInput.setText(tableModel.getValueAt(clickedRow, 3).toString());
@@ -585,7 +560,6 @@ public class PelangganView extends javax.swing.JFrame {
         // TODO add your handling code here:
         setComponent(false);
         setEditDeleteBtn(false);
-        idInput.setText("");
         clearText();
     }//GEN-LAST:event_cancelBtnActionPerformed
 
@@ -597,7 +571,6 @@ public class PelangganView extends javax.swing.JFrame {
                 try{
                     pControl.deletePelanggan(selectedId);
                     clearText();
-                    idInput.setText("");
                     showPelanggan();
                     setComponent(false);
                     setEditDeleteBtn(false);
@@ -673,8 +646,6 @@ public class PelangganView extends javax.swing.JFrame {
     private javax.swing.JPanel dataPanel;
     private javax.swing.JButton deleteBtn;
     private javax.swing.JButton editBtn;
-    private javax.swing.JTextField idInput;
-    private javax.swing.JLabel idLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
