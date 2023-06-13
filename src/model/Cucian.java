@@ -27,21 +27,23 @@ public class Cucian {
         this.pelanggan = pelanggan;
     }
     
-    public Cucian(float berat, String tglMasuk, String tglKeluar, Mesin mesin, Pelanggan pelanggan) {
+    public Cucian(float berat, boolean statusCuci, String tglMasuk, String tglKeluar, Mesin mesin, Pelanggan pelanggan) {
         this.berat = berat;
         this.tglMasuk = tglMasuk;
         this.tglKeluar = tglKeluar;
         this.mesin = mesin;
         this.pelanggan = pelanggan;
+        this.statusCuci = statusCuci;
     }
     
-    public Cucian(int id, float berat, String tglMasuk, String tglKeluar, Mesin mesin, Pelanggan pelanggan) {
+    public Cucian(int id, float berat, boolean statusCuci, String tglMasuk, String tglKeluar, Mesin mesin, Pelanggan pelanggan) {
         this.id = id;
         this.berat = berat;
         this.tglMasuk = tglMasuk;
         this.tglKeluar = tglKeluar;
         this.mesin = mesin;
         this.pelanggan = pelanggan;
+        this.statusCuci = statusCuci;
     }
 
     public int getId() {
