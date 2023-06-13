@@ -18,8 +18,8 @@ public class TransaksiDAO {
     public void insertTransaksi(Transaksi t){
         con = dbCon.makeConnection();
         
-        String sql = "INSERT INTO transaksi(idCustomer, totalBiaya) VALUES ('"
-                + t.getPelanggan().getIdPelanggan() + "', '" + t.getTotalBiaya() + "')";
+        String sql = "INSERT INTO transaksi(idPelanggan, idCucian, totalBiaya) VALUES ("
+                + t.getPelanggan().getIdPelanggan() + "," + t.getCucian().getId() +", " + t.getTotalBiaya() + ")";
         
         System.out.println("Adding Transaksi...");
         
