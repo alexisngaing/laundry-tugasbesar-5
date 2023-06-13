@@ -12,17 +12,17 @@ public class TransaksiControl {
         transaksiDAO.insertTransaksi(transaksi);
     }
 
-    public String showTransaksi() {
-        List<Transaksi> dataTransaksi = transaksiDAO.showTransaksi();
-        String transaksiString = "";
-        for (int i = 0; i < dataTransaksi.size(); i++) {
-            transaksiString = transaksiString + dataTransaksi.get(i).toString() + "\n";
-        }
-        return transaksiString;
-    }
+//    public String showTransaksi() {
+//        List<Transaksi> dataTransaksi = transaksiDAO.showTransaksi();
+//        String transaksiString = "";
+//        for (int i = 0; i < dataTransaksi.size(); i++) {
+//            transaksiString = transaksiString + dataTransaksi.get(i).toString() + "\n";
+//        }
+//        return transaksiString;
+//    }
     
-    public TableTransaksi showDataTransaksi(){
-        List<Transaksi> dataTransaksi = transaksiDAO.showTransaksi();
+    public TableTransaksi showDataTransaksi(String query) {
+        List<Transaksi> dataTransaksi = transaksiDAO.showTransaksi(query);
         TableTransaksi tableTransaksi = new TableTransaksi(dataTransaksi);
         
         return tableTransaksi;
