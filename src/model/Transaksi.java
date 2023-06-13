@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model;
 
 public class Transaksi {
@@ -12,6 +8,12 @@ public class Transaksi {
 
     public Transaksi(int idTransaksi, float totalBiaya, Pelanggan pelanggan, Cucian cucian) {
         this.idTransaksi = idTransaksi;
+        this.totalBiaya = totalBiaya;
+        this.pelanggan = pelanggan;
+        this.cucian = cucian;
+    }
+    
+    public Transaksi(float totalBiaya, Pelanggan pelanggan, Cucian cucian) {
         this.totalBiaya = totalBiaya;
         this.pelanggan = pelanggan;
         this.cucian = cucian;
@@ -48,5 +50,4 @@ public class Transaksi {
     public void setCucian(Cucian cucian) {
         this.cucian = cucian;
     }
-    
 }
