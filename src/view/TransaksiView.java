@@ -566,6 +566,7 @@ public class TransaksiView extends javax.swing.JFrame {
         totalBiayaField.setText("Rp.0");
         bayarInput.setText("");
         setComponent(false);
+        showTransaksi();
     }//GEN-LAST:event_cancelBtnActionPerformed
 
     
