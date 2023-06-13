@@ -516,6 +516,8 @@ public class TransaksiView extends javax.swing.JFrame {
             kembalian = Float.parseFloat(bayarInput.getText()) - Float.parseFloat(totalBiayaField.getText());
             kembalianField.setText("Rp." + kembalian);
             JOptionPane.showMessageDialog(null, "Pembayaran Berhasil!");
+            int clickedRow = tableTransaksi.getSelectedRow();
+            TableModel tableModel = tableTransaksi.getModel();
             tControl.deleteTransaksi(selectedId);
             showTransaksi();
             selectedId = 0;

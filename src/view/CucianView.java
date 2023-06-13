@@ -593,6 +593,7 @@ public class CucianView extends javax.swing.JFrame {
         if (action.equals("Tambah")) {
             Cucian c = new Cucian(Float.parseFloat(beratInput.getText()), status, today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")), tomorrow.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")), selectedMesin, selectedPelanggan);
             cControl.insertDataCucian(c);
+            System.out.println(selectedPelanggan.getNama());
             c = new CucianDAO().showCucian(selectedPelanggan.getNama()).get(0);
             tControl.insertDataTransaksi(new Transaksi(c.getBerat()* 5000,selectedPelanggan,c));
             JOptionPane.showMessageDialog(null, "Berhasil Tambah Data Cucian!");

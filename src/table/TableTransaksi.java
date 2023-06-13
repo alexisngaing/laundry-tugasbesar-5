@@ -38,6 +38,8 @@ public class TableTransaksi extends AbstractTableModel{
                 return list.get(rowIndex).getCucian().getBerat();
             case 4 :
                 return list.get(rowIndex).getTotalBiaya();
+            case 5:
+                return list.get(rowIndex).getCucian().getId();
             default :
                 return null;
         }
