@@ -364,9 +364,19 @@ public class TransaksiView extends javax.swing.JFrame {
 
         bayarBtn.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 11)); // NOI18N
         bayarBtn.setText("Bayar");
+        bayarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bayarBtnActionPerformed(evt);
+            }
+        });
 
         cancelBtn.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 11)); // NOI18N
         cancelBtn.setText("Batal");
+        cancelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout bayarPanelLayout = new javax.swing.GroupLayout(bayarPanel);
         bayarPanel.setLayout(bayarPanelLayout);
@@ -510,6 +520,12 @@ public class TransaksiView extends javax.swing.JFrame {
 
     private void tableTransaksiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableTransaksiMouseClicked
         // TODO add your handling code here:
+        setComponent(true);
+        int clickedRow = tableTransaksi.getSelectedRow();
+        TableModel tableModel = tableTransaksi.getModel();
+        
+        selectedId = Integer.parseInt(tableModel.getValueAt(clickedRow, 0).toString());
+        totalBiayaField.setText(tableModel.getValueAt(clickedRow, 4).toString());
     }//GEN-LAST:event_tableTransaksiMouseClicked
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
@@ -529,6 +545,24 @@ public class TransaksiView extends javax.swing.JFrame {
             System.out.println("Error : " + e.getMessage());
         }
     }//GEN-LAST:event_searchBtnActionPerformed
+
+    private void bayarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bayarBtnActionPerformed
+        // TODO add your handling code here:
+        float kembalian = 0;
+        if(Float.parseFloat(bayarInput.getText()) < Float.parseFloat(totalBiayaField.getText())){
+            JOptionPane.showMessageDialog(null, "Uang pembayaran kurang!");
+        }else{
+            kembalian = Float.parseFloat(totalBiayaField.getText()) - Float.parseFloat(bayarInput.getText());
+            JOptionPane.showMessageDialog(null, "Pembayaran Berhasil!");
+        } 
+    }//GEN-LAST:event_bayarBtnActionPerformed
+
+    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
+        // TODO add your handling code here:
+        selectedId = 0;
+        totalBiayaField.setText("Rp.0");
+        setComponent(false);
+    }//GEN-LAST:event_cancelBtnActionPerformed
 
     
     /**

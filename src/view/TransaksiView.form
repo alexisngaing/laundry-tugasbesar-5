@@ -532,6 +532,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Bayar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bayarBtnActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="cancelBtn">
               <Properties>
@@ -540,6 +543,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Batal"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelBtnActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
