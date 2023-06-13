@@ -69,13 +69,11 @@ public class TransaksiView extends javax.swing.JFrame {
         tableTransaksi.setModel(tControl.showDataTransaksi(""));
     }
     
-//    public void inputKosongException() throws inputKosongException {
-//        if (pelangganDropdown.getSelectedIndex() == -1 
-//                || mesinDropdown.getSelectedIndex() == -1 
-//                || beratInput.getText().isEmpty()) {
-//            throw new inputKosongException();
-//        }
-//    }
+    public void inputKosongException() throws inputKosongException {
+        if (bayarInput.getText().isEmpty()) {
+            throw new inputKosongException();
+        }
+    }
     
     public void uangKurangException() throws uangKurangException {
         if (Float.parseFloat(bayarInput.getText()) < Float.parseFloat(totalBiayaField.getText())) {
@@ -510,22 +508,28 @@ public class TransaksiView extends javax.swing.JFrame {
     private void bayarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bayarBtnActionPerformed
         // TODO add your handling code here:
         float kembalian = 0;
-        if(Float.parseFloat(bayarInput.getText()) < Float.parseFloat(totalBiayaField.getText())){
-            JOptionPane.showMessageDialog(null, "Uang pembayaran kurang!");
-        }else{
-            kembalian = Float.parseFloat(bayarInput.getText()) - Float.parseFloat(totalBiayaField.getText());
-            kembalianField.setText("Rp." + kembalian);
-            JOptionPane.showMessageDialog(null, "Pembayaran Berhasil!");
-            int clickedRow = tableTransaksi.getSelectedRow();
-            TableModel tableModel = tableTransaksi.getModel();
-            tControl.deleteTransaksi(selectedId);
-            showTransaksi();
-            selectedId = 0;
-            totalBiayaField.setText("Rp.0");
-            bayarInput.setText("");
-            kembalianField.setText("Rp.0");
-            setComponent(false);
-        }
+        try{
+            inputKosongException();
+            if(Float.parseFloat(bayarInput.getText()) < Float.parseFloat(totalBiayaField.getText())){
+                JOptionPane.showMessageDialog(null, "Uang pembayaran kurang!");
+            }else{
+                kembalian = Float.parseFloat(bayarInput.getText()) - Float.parseFloat(totalBiayaField.getText());
+                kembalianField.setText("Rp." + kembalian);
+                JOptionPane.showMessageDialog(null, "Pembayaran Berhasil!");
+                int clickedRow = tableTransaksi.getSelectedRow();
+                TableModel tableModel = tableTransaksi.getModel();
+                tControl.deleteTransaksi(selectedId);
+                showTransaksi();
+                selectedId = 0;
+                totalBiayaField.setText("Rp.0");
+                bayarInput.setText("");
+                kembalianField.setText("Rp.0");
+                setComponent(false);
+            }
+        }catch(inputKosongException e){
+            JOptionPane.showMessageDialog(this, e.message());
+        } 
+            
     }//GEN-LAST:event_bayarBtnActionPerformed
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
