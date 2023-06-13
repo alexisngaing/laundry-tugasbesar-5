@@ -552,10 +552,13 @@ public class TransaksiView extends javax.swing.JFrame {
         if(Float.parseFloat(bayarInput.getText()) < Float.parseFloat(totalBiayaField.getText())){
             JOptionPane.showMessageDialog(null, "Uang pembayaran kurang!");
         }else{
-            kembalian = Float.parseFloat(totalBiayaField.getText()) - Float.parseFloat(bayarInput.getText());
+            kembalian = Float.parseFloat(bayarInput.getText()) - Float.parseFloat(totalBiayaField.getText());
+            kembalianField.setText("Rp." + kembalian);
             JOptionPane.showMessageDialog(null, "Pembayaran Berhasil!");
             selectedId = 0;
             totalBiayaField.setText("Rp.0");
+            bayarInput.setText("");
+            kembalianField.setText("Rp.0");
             setComponent(false);
         }
     }//GEN-LAST:event_bayarBtnActionPerformed
