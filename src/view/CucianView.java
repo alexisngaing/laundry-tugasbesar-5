@@ -59,6 +59,7 @@ public class CucianView extends javax.swing.JFrame {
         beratInput.setEnabled(value);
         tglMasukInput.setEnabled(false);
         tglKeluarInput.setEnabled(false);
+        statusCheckBox.setEnabled(value);
         
         saveBtn.setEnabled(value);
         cancelBtn.setEnabled(value);
@@ -80,6 +81,7 @@ public class CucianView extends javax.swing.JFrame {
         beratInput.setText("");
         tglMasukInput.setText("");
         tglKeluarInput.setText("");
+        statusCheckBox.setSelected(false);
     }
     
     public void setPelangganToDropdown() {
@@ -138,6 +140,7 @@ public class CucianView extends javax.swing.JFrame {
         tglKeluarInput = new javax.swing.JTextField();
         mesinDropdown = new javax.swing.JComboBox<>();
         pelangganDropdown = new javax.swing.JComboBox<>();
+        statusCheckBox = new javax.swing.JCheckBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelCucian = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
@@ -345,6 +348,14 @@ public class CucianView extends javax.swing.JFrame {
             }
         });
 
+        statusCheckBox.setBackground(new java.awt.Color(255, 255, 255));
+        statusCheckBox.setText("Status Cucian");
+        statusCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                statusCheckBoxActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout dataPanelLayout = new javax.swing.GroupLayout(dataPanel);
         dataPanel.setLayout(dataPanelLayout);
         dataPanelLayout.setHorizontalGroup(
@@ -360,12 +371,15 @@ public class CucianView extends javax.swing.JFrame {
                 .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tglKeluarInput, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tglKeluarLabel)
-                    .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(tglMasukLabel)
-                        .addComponent(beratLabel)
-                        .addComponent(beratInput)
-                        .addComponent(tglMasukInput, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(dataPanelLayout.createSequentialGroup()
+                        .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tglMasukLabel)
+                            .addComponent(beratLabel)
+                            .addComponent(beratInput)
+                            .addComponent(tglMasukInput, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))
+                        .addGap(62, 62, 62)
+                        .addComponent(statusCheckBox)))
+                .addContainerGap(95, Short.MAX_VALUE))
         );
         dataPanelLayout.setVerticalGroup(
             dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -383,8 +397,10 @@ public class CucianView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(mesinDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(dataPanelLayout.createSequentialGroup()
-                        .addComponent(beratInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(13, 13, 13)
+                        .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(beratInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(statusCheckBox))
+                        .addGap(11, 11, 11)
                         .addComponent(tglMasukLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tglMasukInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -587,18 +603,29 @@ public class CucianView extends javax.swing.JFrame {
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         int selectedIndexP = pelangganDropdown.getSelectedIndex();
         Pelanggan selectedPelanggan = listPelanggan.get(selectedIndexP);
+        boolean status ;
         
         int selectedIndexM = mesinDropdown.getSelectedIndex();
         Mesin selectedMesin = listMesin.get(selectedIndexM);
         
-        if (action.equals("Tambah")) {
-            Cucian c = new Cucian(Float.parseFloat(beratInput.getText()), today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")), tomorrow.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")), selectedMesin, selectedPelanggan);
-            cControl.insertDataCucian(c);
-        } else if(action.equals("Ubah")) {
-            Cucian c = new Cucian(selectedId, Float.parseFloat(beratInput.getText()), tglMasukInput.getText(), tglKeluarInput.getText(), selectedMesin, selectedPelanggan);
-            cControl.updateCucian(c);
+        if(statusCheckBox.isSelected()){
+            status = true;
+        }else{
+            status = false;
         }
-        JOptionPane.showMessageDialog(null, "Berhasil Tambah Data Cucian!");
+        
+        System.out.println("Status : " +status);
+        
+        if (action.equals("Tambah")) {
+            Cucian c = new Cucian(Float.parseFloat(beratInput.getText()), status, today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")), tomorrow.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")), selectedMesin, selectedPelanggan);
+            cControl.insertDataCucian(c);
+            JOptionPane.showMessageDialog(null, "Berhasil Tambah Data Cucian!");
+        } else if(action.equals("Ubah")) {
+            Cucian c = new Cucian(selectedId, Float.parseFloat(beratInput.getText()), status, tglMasukInput.getText(), tglKeluarInput.getText(), selectedMesin, selectedPelanggan);
+            cControl.updateCucian(c);
+            JOptionPane.showMessageDialog(null, "Berhasil Ubah Data Cucian!");
+        }
+        
         clearText();
         showCucian();
         setComponent(false);
@@ -727,6 +754,10 @@ public class CucianView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_searchBtnActionPerformed
 
+    private void statusCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusCheckBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_statusCheckBoxActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -793,6 +824,7 @@ public class CucianView extends javax.swing.JFrame {
     private javax.swing.JButton saveBtn;
     private javax.swing.JButton searchBtn;
     private javax.swing.JTextField searchInput;
+    private javax.swing.JCheckBox statusCheckBox;
     private javax.swing.JTable tabelCucian;
     private javax.swing.JTextField tglKeluarInput;
     private javax.swing.JLabel tglKeluarLabel;

@@ -360,14 +360,18 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="tglKeluarInput" min="-2" pref="115" max="-2" attributes="0"/>
                           <Component id="tglKeluarLabel" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="tglMasukLabel" min="-2" max="-2" attributes="0"/>
-                              <Component id="beratLabel" min="-2" max="-2" attributes="0"/>
-                              <Component id="beratInput" max="32767" attributes="0"/>
-                              <Component id="tglMasukInput" alignment="0" pref="115" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="tglMasukLabel" min="-2" max="-2" attributes="0"/>
+                                  <Component id="beratLabel" min="-2" max="-2" attributes="0"/>
+                                  <Component id="beratInput" max="32767" attributes="0"/>
+                                  <Component id="tglMasukInput" alignment="0" pref="115" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+                              <Component id="statusCheckBox" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="95" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -388,8 +392,11 @@
                               <Component id="mesinDropdown" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Component id="beratInput" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="beratInput" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="statusCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                               <Component id="tglMasukLabel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="tglMasukInput" min="-2" max="-2" attributes="0"/>
@@ -470,6 +477,17 @@
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Pelanggan&gt;"/>
               </AuxValues>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="statusCheckBox">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Status Cucian"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="statusCheckBoxActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
