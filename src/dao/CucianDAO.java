@@ -140,7 +140,7 @@ public class CucianDAO {
 
         return cucian;
     }
-    
+    //
     public void updateCucian(Cucian c){
         con = dbCon.makeConnection();
         
@@ -182,6 +182,8 @@ public class CucianDAO {
             System.out.println(e);
         }
         dbCon.closeConnection();
+        
     }
+    
 
 }
