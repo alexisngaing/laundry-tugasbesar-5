@@ -9,6 +9,7 @@ import java.util.List;
 import model.Pelanggan;
 import model.Cucian;
 import model.Transaksi;
+import model.Mesin;
 
 public class TransaksiDAO {
     private DbConnection dbCon = new DbConnection();
@@ -17,11 +18,10 @@ public class TransaksiDAO {
     public void insertTransaksi(Transaksi t){
         con = dbCon.makeConnection();
         
-        String sql = "INSERT INTO transaksi(totalBiaya, idPelanggan, idCucian) "
-                + "VALUES ('" + t.getTotalBiaya() + "', '" + t.getPelanggan().getIdPelanggan() + "', '"
-                + t.getCucian().getId() + "')";
+        String sql = "INSERT INTO transaksi(idCustomer, totalBiaya) VALUES ('"
+                + t.getPelanggan().getIdPelanggan() + "', '" + t.getTotalBiaya() + "')";
         
-        System.out.println("Adding Transaksi");
+        System.out.println("Adding Transaksi...");
         
         try {
             Statement statement = con.createStatement();
@@ -34,12 +34,10 @@ public class TransaksiDAO {
         }   
     }
     
-    public List<Transaksi> showTransaksi() {
+    public List<Transaksi> showTransaksi(String query) {
         con = dbCon.makeConnection();
         
-        String sql = "SELECT t.*, p.*, c.* FROM transaksi as t "
-                + "JOIN pelanggan as p ON t.idPelanggan = p.id "
-                + "JOIN cucian as c ON t.idCucian = c.id";
+        String sql = "SELECT p.*, c.*, m.* FROM pelanggan as p JOIN cucian as c ON p.id = c.idPelanggan JOIN mesin as m ON m.id = c.idMesin WHERE (p.id = '" + query + "')";
         
         System.out.println("Fetching Transaksi data...");
 
@@ -51,34 +49,40 @@ public class TransaksiDAO {
 
             if (rs != null) {
                 while (rs.next()) {
+                    Mesin mesin = new Mesin(
+                            rs.getInt("id"),
+                            rs.getBoolean("status"),
+                            rs.getFloat("kapasitas"),
+                            rs.getString("durasi")
+                    );
+                    
                     Pelanggan pelanggan = new Pelanggan(
-                            rs.getInt("p.id"),
-                            rs.getString("p.nama"),
-                            rs.getString("p.noTelp"),
-                            rs.getString("p.alamat")
+                            rs.getInt("id"),
+                            rs.getString("nama"),
+                            rs.getString("noTelp"),
+                            rs.getString("alamat")
                     );
                     
                     Cucian cucian = new Cucian(
-                            rs.getInt("c.id"),
-                            rs.getBoolean("c.statusCuci"),
-                            rs.getBoolean("c.statusDry"),
-                            rs.getFloat("c.berat"),
-                            rs.getString("c.tglMasuk"),
-                            rs.getString("c.tglKeluar"),
-                            null,
-                            pelanggan
+                            rs.getInt("id"),
+                            rs.getBoolean("statusCuci"),
+                            rs.getBoolean("statusDry"),
+                            rs.getFloat("berat"),
+                            rs.getString("tglMasuk"),
+                            rs.getString("tglKeluar"),
+                            null, pelanggan
                     );
                     
                     Transaksi transaksi = new Transaksi(
-                            rs.getInt("t.idTransaksi"),
-                            rs.getFloat("t.totalBiaya"),
-                            pelanggan,
-                            cucian
+                            rs.getInt("idTransaksi"),
+                            rs.getFloat("totalBiaya"),
+                            pelanggan, cucian
                     );
-                    
                     list.add(transaksi);
                 }
             }
+            rs.close();
+            statement.close();
         } catch (Exception e) {
             System.out.println("[!] Error Fetching Transaksi data...");
             System.out.println(e);
@@ -90,11 +94,12 @@ public class TransaksiDAO {
     public Transaksi searchTransaksi(int idTransaksi){
         con = dbCon.makeConnection();
         
-        String sql = "SELECT t.*, p.*, c.* FROM transaksi as t "
-                + "JOIN pelanggan as p ON t.idPelanggan = p.id "
-                + "JOIN cucian as c ON t.idCucian = c.id "
-                + "WHERE t.idTransaksi = " + idTransaksi;
-        
+//        String sql = "SELECT t.*, p.*, c.* FROM transaksi as t "
+//                + "JOIN pelanggan as p ON t.idPelanggan = p.id "
+//                + "JOIN cucian as c ON t.idCucian = c.id "
+//                + "WHERE t.idTransaksi = " + idTransaksi;
+        String sql = "SELECT * FROM transaksi WHERE idTransaksi = '" + idTransaksi + "'";
+
         System.out.println("Searching Transaksi...");
         
         Transaksi transaksi = null;
@@ -105,27 +110,34 @@ public class TransaksiDAO {
             
             if (rs != null ) {
                 while (rs.next()) {
+                    Mesin mesin = new Mesin(
+                            rs.getInt("id"),
+                            rs.getBoolean("status"),
+                            rs.getFloat("kapasitas"),
+                            rs.getString("durasi")
+                    );
+                    
                     Pelanggan pelanggan = new Pelanggan(
-                            rs.getInt("p.id"),
-                            rs.getString("p.nama"),
-                            rs.getString("p.noTelp"),
-                            rs.getString("p.alamat")
+                            rs.getInt("id"),
+                            rs.getString("nama"),
+                            rs.getString("noTelp"),
+                            rs.getString("alamat")
                     );
                     
                     Cucian cucian = new Cucian(
-                            rs.getInt("c.id"),
-                            rs.getBoolean("c.statusCuci"),
-                            rs.getBoolean("c.statusDry"),
-                            rs.getFloat("c.berat"),
-                            rs.getString("c.tglMasuk"),
-                            rs.getString("c.tglKeluar"),
+                            rs.getInt("id"),
+                            rs.getBoolean("statusCuci"),
+                            rs.getBoolean("statusDry"),
+                            rs.getFloat("berat"),
+                            rs.getString("tglMasuk"),
+                            rs.getString("tglKeluar"),
                             null,
                             pelanggan
                     );
                     
                     transaksi = new Transaksi(
-                            rs.getInt("t.idTransaksi"),
-                            rs.getFloat("t.totalBiaya"),
+                            rs.getInt("idTransaksi"),
+                            rs.getFloat("totalBiaya"),
                             pelanggan,
                             cucian
                     );
