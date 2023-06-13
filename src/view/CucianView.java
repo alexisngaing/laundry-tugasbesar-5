@@ -75,7 +75,7 @@ public class CucianView extends javax.swing.JFrame {
     
     public void clearText() {
         pelangganDropdown.setSelectedIndex(0);
-        //mesinDropdown.setSelectedIndex(0);
+        mesinDropdown.setSelectedIndex(0);
         searchInput.setText("");
         beratInput.setText("");
         tglMasukInput.setText("");
