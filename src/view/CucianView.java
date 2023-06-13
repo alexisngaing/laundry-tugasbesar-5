@@ -412,6 +412,12 @@ public class CucianView extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial", 1, 27)); // NOI18N
         jLabel1.setText("Cucian");
 
+        searchInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchInputActionPerformed(evt);
+            }
+        });
+
         searchBtn.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 11)); // NOI18N
         searchBtn.setText("Cari");
         searchBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -584,30 +590,37 @@ public class CucianView extends javax.swing.JFrame {
         int selectedIndexM = mesinDropdown.getSelectedIndex();
         Mesin selectedMesin = listMesin.get(selectedIndexM);
         
-        if(statusCheckBox.isSelected()){
-            status = true;
-        }else{
-            status = false;
-        }
-        
-        if (action.equals("Tambah")) {
-            Cucian c = new Cucian(Float.parseFloat(beratInput.getText()), status, today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")), tomorrow.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")), selectedMesin, selectedPelanggan);
-            cControl.insertDataCucian(c);
-            System.out.println(selectedPelanggan.getNama());
-            c = new CucianDAO().showCucian(selectedPelanggan.getNama()).get(0);
-            tControl.insertDataTransaksi(new Transaksi(c.getBerat()* 5000,selectedPelanggan,c));
-            JOptionPane.showMessageDialog(null, "Berhasil Tambah Data Cucian!");
-        } else if(action.equals("Ubah")) {
-            Cucian c = new Cucian(selectedId, Float.parseFloat(beratInput.getText()), status, tglMasukInput.getText(), tglKeluarInput.getText(), selectedMesin, selectedPelanggan);
-            cControl.updateCucian(c);
-            if(status==true){
-                totalBiaya = c.getBerat()*7000;
-                Transaksi t = new Transaksi( totalBiaya, selectedPelanggan, c);
-                tControl.insertDataTransaksi(t);
+        try{
+            inputKosongException();
+            if(statusCheckBox.isSelected()){
+                status = true;
+            }else{
+                status = false;
             }
+
+            if (action.equals("Tambah")) {
+                Cucian c = new Cucian(Float.parseFloat(beratInput.getText()), status, today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")), tomorrow.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")), selectedMesin, selectedPelanggan);
+                cControl.insertDataCucian(c);
+                System.out.println(selectedPelanggan.getNama());
+                c = new CucianDAO().showCucian(selectedPelanggan.getNama()).get(0);
+                tControl.insertDataTransaksi(new Transaksi(c.getBerat()* 5000,selectedPelanggan,c));
+                JOptionPane.showMessageDialog(null, "Berhasil Tambah Data Cucian!");
+            } else if(action.equals("Ubah")) {
+                Cucian c = new Cucian(selectedId, Float.parseFloat(beratInput.getText()), status, tglMasukInput.getText(), tglKeluarInput.getText(), selectedMesin, selectedPelanggan);
+                cControl.updateCucian(c);
+                if(status==true){
+                    totalBiaya = c.getBerat()*7000;
+                    Transaksi t = new Transaksi( totalBiaya, selectedPelanggan, c);
+                    tControl.insertDataTransaksi(t);
+                }
+
+                JOptionPane.showMessageDialog(null, "Berhasil Ubah Data Cucian!");
+            }
+        }catch(inputKosongException e){
+            JOptionPane.showMessageDialog(this, e.message());
+        } 
+        
             
-            JOptionPane.showMessageDialog(null, "Berhasil Ubah Data Cucian!");
-        }
         
         clearText();
         showCucian();
@@ -744,6 +757,10 @@ public class CucianView extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_statusCheckBoxActionPerformed
+
+    private void searchInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchInputActionPerformed
 
     /**
      * @param args the command line arguments
