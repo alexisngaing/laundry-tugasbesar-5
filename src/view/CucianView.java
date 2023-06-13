@@ -614,8 +614,6 @@ public class CucianView extends javax.swing.JFrame {
             status = false;
         }
         
-        System.out.println("Status : " +status);
-        
         if (action.equals("Tambah")) {
             Cucian c = new Cucian(Float.parseFloat(beratInput.getText()), status, today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")), tomorrow.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")), selectedMesin, selectedPelanggan);
             cControl.insertDataCucian(c);
