@@ -61,6 +61,7 @@ public class CucianView extends javax.swing.JFrame {
         tglMasukInput.setEnabled(false);
         tglKeluarInput.setEnabled(false);
         statusCheckBox.setEnabled(value);
+        statusCheckBox.setSelected(false);
         
         saveBtn.setEnabled(value);
         cancelBtn.setEnabled(value);
