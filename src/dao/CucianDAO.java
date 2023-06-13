@@ -19,7 +19,7 @@ public class CucianDAO {
         con = dbCon.makeConnection();
         
         String sql = "INSERT INTO cucian(statusCuci, statusDry, berat, tglMasuk, tglKeluar, idPelanggan, idMesin) "
-                + "VALUES ('False', 'False', '" + c.getBerat() + "', '" + c.getTglMasuk() +"', '"
+                + "VALUES ('"+c.isStatusCuci()+"', 'False', '" + c.getBerat() + "', '" + c.getTglMasuk() +"', '"
                 + c.getTglKeluar() +"', '"+ c.getPelanggan().getIdPelanggan() +"', '"+ c.getMesin().getIdMesin() +"')";
         
         System.out.println("Adding Cucian");
@@ -40,7 +40,7 @@ public class CucianDAO {
         
         String sql = "SELECT c.*, p.*, m.* FROM cucian as c JOIN mesin as m ON c.idMesin = m.id JOIN pelanggan as p ON c.idPelanggan = p.id WHERE (c.id LIKE "
                 + "'%" + query + "%'"
-//                + "OR c.statusCuci LIKE '%" + query + "%'"
+                + "OR c.statusCuci LIKE '%" + query + "%'"
 //                + "OR c.statusDry LIKE '%" + query + "%'"
                 + "OR c.berat LIKE '%" + query + "%'"
                 + "OR c.tglMasuk LIKE '%" + query + "%'"
@@ -145,7 +145,7 @@ public class CucianDAO {
         con = dbCon.makeConnection();
         
         String sql = "UPDATE cucian SET "
-//                + "statusCuci = '" + c.isStatusCuci() + "', "
+                + "statusCuci = '" + c.isStatusCuci() + "', "
 //                + "statusDry = '" + c.isStatusDry() + "', "
                 + "berat = '" + c.getBerat() + "', "
                 + "tglMasuk = '" + c.getTglMasuk() + "', "
