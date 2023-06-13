@@ -31,6 +31,7 @@ public class CucianView extends javax.swing.JFrame {
     private MesinControl mControl;
     private LocalDate today;
     private LocalDate tomorrow;
+    private String tglSelesai;
     
     List<Cucian> listCucian;
     List<Pelanggan> listPelanggan;
@@ -347,7 +348,7 @@ public class CucianView extends javax.swing.JFrame {
         });
 
         statusCheckBox.setBackground(new java.awt.Color(255, 255, 255));
-        statusCheckBox.setText("Status Cucian");
+        statusCheckBox.setText("Cucian Selesai");
         statusCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 statusCheckBoxActionPerformed(evt);
@@ -532,7 +533,7 @@ public class CucianView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(dataPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)
                     .addGroup(panel2Layout.createSequentialGroup()
                         .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
@@ -657,6 +658,7 @@ public class CucianView extends javax.swing.JFrame {
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         setComponent(true);
+        statusCheckBox.setEnabled(false);
         action = "Tambah";
         today = LocalDate.now();
         tomorrow = today.plusDays(2);
@@ -714,6 +716,8 @@ public class CucianView extends javax.swing.JFrame {
         tglMasukInput.setText(tableModel.getValueAt(clickedRow, 2).toString());
         tglKeluarInput.setText(tableModel.getValueAt(clickedRow, 3).toString());
         
+        tglSelesai = tableModel.getValueAt(clickedRow, 3).toString();
+        
         String idM = tableModel.getValueAt(clickedRow, 4).toString();
         for(Mesin mesin : listMesin){
             if(mesin.getIdMesin() == Integer.parseInt(idM)){
@@ -751,7 +755,15 @@ public class CucianView extends javax.swing.JFrame {
     }//GEN-LAST:event_searchBtnActionPerformed
 
     private void statusCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusCheckBoxActionPerformed
-        // TODO add your handling code here:
+        if(statusCheckBox.isSelected()){
+            tglKeluarInput.setEnabled(false);
+            today = LocalDate.now();
+            tglKeluarInput.setText(today.toString());
+        }else{
+            tglKeluarInput.setEnabled(true);
+            tglKeluarInput.setText(tglSelesai);
+        }
+        
     }//GEN-LAST:event_statusCheckBoxActionPerformed
 
     /**
