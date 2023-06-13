@@ -75,7 +75,7 @@ public class CucianView extends javax.swing.JFrame {
     
     public void clearText() {
         pelangganDropdown.setSelectedIndex(0);
-        mesinDropdown.setSelectedIndex(0);
+        //mesinDropdown.setSelectedIndex(0);
         searchInput.setText("");
         beratInput.setText("");
         tglMasukInput.setText("");
@@ -184,7 +184,7 @@ public class CucianView extends javax.swing.JFrame {
         pelangganPanelLayout.setVerticalGroup(
             pelangganPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pelangganPanelLayout.createSequentialGroup()
-                .addContainerGap(13, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(pelangganLabel)
                 .addContainerGap())
         );
@@ -410,6 +410,11 @@ public class CucianView extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tabelCucian.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelCucianMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabelCucian);
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
@@ -419,6 +424,11 @@ public class CucianView extends javax.swing.JFrame {
 
         searchBtn.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 11)); // NOI18N
         searchBtn.setText("Cari");
+        searchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -667,6 +677,54 @@ public class CucianView extends javax.swing.JFrame {
     private void pelangganDropdownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pelangganDropdownActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_pelangganDropdownActionPerformed
+
+    private void tabelCucianMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelCucianMouseClicked
+        setComponent(false);
+        setEditDeleteBtn(true);
+        int indexPelanggan = -1;
+        int indexMesin = -1;
+        int clickedRow = tabelCucian.getSelectedRow();
+        TableModel tableModel = tabelCucian.getModel();
+        
+        selectedId = Integer.parseInt(tableModel.getValueAt(clickedRow, 0).toString());
+        beratInput.setText(tableModel.getValueAt(clickedRow, 1).toString());
+        tglMasukInput.setText(tableModel.getValueAt(clickedRow, 2).toString());
+        tglKeluarInput.setText(tableModel.getValueAt(clickedRow, 3).toString());
+        
+        String idM = tableModel.getValueAt(clickedRow, 4).toString();
+        for(Mesin mesin : listMesin){
+            if(mesin.getIdMesin() == Integer.parseInt(idM)){
+                indexMesin = listMesin.indexOf(mesin);
+            }
+        }
+        mesinDropdown.setSelectedIndex(indexMesin);
+        
+        String namaP = tableModel.getValueAt(clickedRow, 5).toString();
+        for(Pelanggan pelanggan : listPelanggan){
+            if(pelanggan.getNama().equals(namaP)){
+                indexPelanggan = listPelanggan.indexOf(pelanggan);
+            }
+        }
+        pelangganDropdown.setSelectedIndex(indexPelanggan);
+    }//GEN-LAST:event_tabelCucianMouseClicked
+
+    private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
+        setEditDeleteBtn(true);
+        setComponent(false);
+
+        try{
+            TableCucian cucian = cControl.showCucian(searchInput.getText());
+            if(cucian.getRowCount() == 0){
+                clearText();
+                setEditDeleteBtn(false);
+                JOptionPane.showConfirmDialog(null, "Data tidak ditemukan!!", "Konfirmasi", JOptionPane.DEFAULT_OPTION);
+            }else{
+                tabelCucian.setModel(cucian);
+            }
+        }catch(Exception e){
+            System.out.println("Error: " +e.getMessage());
+        }
+    }//GEN-LAST:event_searchBtnActionPerformed
 
     /**
      * @param args the command line arguments
