@@ -43,12 +43,12 @@ public class CucianDAO {
         
         String sql = "SELECT c.*, p.*, m.* FROM cucian as c JOIN mesin as m ON c.idMesin = m.id JOIN pelanggan as p ON c.idPelanggan = p.id WHERE (c.id LIKE "
                 + "'%" + query + "%'"
-                + "OR c.statusCuci = '" + bool + "'"
+                + "AND c.statusCuci = '" + bool + "'"
 //                + "OR c.statusDry LIKE '%" + query + "%'"
-                + "OR c.berat LIKE '%" + query + "%'"
-                + "OR c.tglMasuk LIKE '%" + query + "%'"
-                + "OR m.id LIKE '%" + query + "%'"
-                + "OR p.nama LIKE '%" + query + "%')";
+                + "AND c.berat LIKE '%" + query + "%'"
+                + "AND c.tglMasuk LIKE '%" + query + "%'"
+                + "AND m.id LIKE '%" + query + "%'"
+                + "AND p.nama LIKE '%" + query + "%')";
         
         System.out.println("Mengambil data Cucian...");
         System.out.println(sql);
