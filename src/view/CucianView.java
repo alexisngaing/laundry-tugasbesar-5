@@ -32,6 +32,7 @@ public class CucianView extends javax.swing.JFrame {
     private LocalDate today;
     private LocalDate tomorrow;
     private String tglSelesai;
+    private float totalBiaya;
     
     List<Cucian> listCucian;
     List<Pelanggan> listPelanggan;
@@ -621,6 +622,12 @@ public class CucianView extends javax.swing.JFrame {
         } else if(action.equals("Ubah")) {
             Cucian c = new Cucian(selectedId, Float.parseFloat(beratInput.getText()), status, tglMasukInput.getText(), tglKeluarInput.getText(), selectedMesin, selectedPelanggan);
             cControl.updateCucian(c);
+            if(status==true){
+                totalBiaya = c.getBerat()*7000;
+                Transaksi t = new Transaksi( totalBiaya, selectedPelanggan, c);
+                tControl.insertDataTransaksi(t);
+            }
+            
             JOptionPane.showMessageDialog(null, "Berhasil Ubah Data Cucian!");
         }
         
