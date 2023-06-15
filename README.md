@@ -12,6 +12,11 @@ Kelompok 5
 - Agustinus Aditya Putra Pratama - 210711429 ([@Aditya-PutraAP](https://github.com/Aditya-PutraAP))
 - Dave Sebastian  Petrus - 210711487 ([@Minoritydsp](https://github.com/Minoritydsp))
 
+# Tools
+- Apache NetBeans 12.6
+- PHPMyAdmin
+- XAMPP
+
 # Anouncement
 This project is stored as an archive following with the end of this project. Also whether there will be another update or not.
 
